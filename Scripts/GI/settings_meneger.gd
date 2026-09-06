@@ -1,9 +1,12 @@
+class_name settings_meneger
 extends Node
+##klasa settings meneger
+##
+##służy do zmiany rozdzielczości, w przyszłości gdy będą dodane dźwięki będzie rozbudowana o możliwość zmiany głoścności
 
+const SETTINGS_PATH := "user://settings.cfg"##ścieżka do zmian ustawień
 
-const SETTINGS_PATH := "user://settings.cfg"
-
-const DEFAULT_RESOLUTION := Vector2i(1280, 720)
+const DEFAULT_RESOLUTION := Vector2i(1280, 720)##rozdzielczość domyślna
 
 
 const RESOLUTIONS: Array[Vector2i] = [
@@ -11,10 +14,10 @@ const RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(1280, 720),
 	Vector2i(1600, 900),
 	Vector2i(1920, 1080)
-]
+]##dostępne wielkości okienka 
 
 
-var current_resolution: Vector2i = DEFAULT_RESOLUTION
+var current_resolution: Vector2i = DEFAULT_RESOLUTION##teraźniejsza rozdzielczość
 
 
 func _ready() -> void:
