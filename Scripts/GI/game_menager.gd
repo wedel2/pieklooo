@@ -1,12 +1,13 @@
+class_name game_menager
 extends Node
+##ogólny menager gry
+
+const MAIN_MENU_SCENE := "res://Scenes/UI/main_menu.tscn"##ścieżka do sceny z menu głównym
+const PLAYER_MENU_SCENE := "res://Scenes/UI/player_menu.tscn"##ścieżka do sceny z player menu
+const START_SCENE := "res://Scenes/levels/level_01.tscn"##ścieżka do sceny z pierwszym poziomem
 
 
-const MAIN_MENU_SCENE := "res://Scenes/UI/main_menu.tscn"
-const PLAYER_MENU_SCENE := "res://Scenes/UI/player_menu.tscn"
-const START_SCENE := "res://Scenes/levels/level_01.tscn"
-
-
-var is_changing_scene: bool = false
+var is_changing_scene: bool = false##zmienna pomocnicza sprawdzająca czy jesteśmy w trakcie zmieniania sceny
 
 
 # ============================================================
