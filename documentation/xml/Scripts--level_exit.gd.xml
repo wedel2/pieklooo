@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="&quot;Scripts/level_exit.gd&quot;" inherits="Area2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_body_exited">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="_unhandled_input">
+			<return type="void" />
+			<param index="0" name="event" type="InputEvent" />
+			<description>
+			</description>
+		</method>
+		<method name="enter_door">
+			<return type="void" />
+			<description>
+				przy interakcji przenieś do odpowiedniej ścieżki
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="destination" type="int" setter="" getter="" enum="&quot;Scripts/level_exit.gd&quot;.Destination" default="0">
+		</member>
+		<member name="next_level_path" type="String" setter="" getter="">
+		</member>
+		<member name="interaction_label" type="Label" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="player_inside" type="bool" setter="" getter="" default="false">
+		</member>
+		<member name="is_transitioning" type="bool" setter="" getter="" default="false">
+		</member>
+	</members>
+	<constants>
+		<constant name="NEXT_LEVEL" value="0" enum="Destination">
+		</constant>
+		<constant name="PLAYER_MENU" value="1" enum="Destination">
+		</constant>
+		<constant name="MAIN_MENU" value="2" enum="Destination">
+		</constant>
+	</constants>
+</class>

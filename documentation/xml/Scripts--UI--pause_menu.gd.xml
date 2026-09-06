@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="&quot;Scripts/UI/pause_menu.gd&quot;" inherits="CanvasLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_unhandled_input">
+			<return type="void" />
+			<param index="0" name="event" type="InputEvent" />
+			<description>
+			</description>
+		</method>
+		<method name="toggle_pause">
+			<return type="void" />
+			<description>
+				włącz pauzę
+			</description>
+		</method>
+		<method name="pause_game">
+			<return type="void" />
+			<description>
+				pokaż menu pauzy
+			</description>
+		</method>
+		<method name="resume_game">
+			<return type="void" />
+			<description>
+				wznów grę
+			</description>
+		</method>
+		<method name="_on_resume_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_save_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_main_menu_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_exit_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+	</methods>
+</class>

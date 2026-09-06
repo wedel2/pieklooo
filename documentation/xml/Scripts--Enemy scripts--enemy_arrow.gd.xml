@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="&quot;Scripts/Enemy scripts/enemy_arrow.gd&quot;" inherits="Area2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="setup">
+			<return type="void" />
+			<param index="0" name="new_direction" type="Vector2" />
+			<param index="1" name="new_damage" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_physics_process">
+			<return type="void" />
+			<param index="0" name="delta" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="hit_target">
+			<return type="void" />
+			<description>
+				jak strzała uderza w gracza to zadaj dmg i ją usuń
+			</description>
+		</method>
+		<method name="hit_terrain">
+			<return type="void" />
+			<description>
+				jak strzała uderzy w teren to ją usuń po animacji uderzania w teren
+			</description>
+		</method>
+		<method name="_on_visible_on_screen_notifier_2d_screen_exited">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="speed" type="float" setter="" getter="" default="500.0">
+		</member>
+		<member name="animated_sprite" type="AnimatedSprite2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="collision_shape" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="direction" type="Vector2" setter="" getter="" default="Vector2(1, 0)">
+		</member>
+		<member name="damage" type="int" setter="" getter="" default="10">
+		</member>
+		<member name="is_flying" type="bool" setter="" getter="" default="true">
+		</member>
+	</members>
+</class>

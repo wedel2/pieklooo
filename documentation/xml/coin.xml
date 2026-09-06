@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="coin" inherits="Area2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Klasa coin
+	</brief_description>
+	<description>
+		monety które można zebrać i kupić za nie ulepszenia gracza
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+				przy zebraniu monety dodaj ją do monet gracza, usuń monetę i dodaj do zapisu jako zebraną
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="value" type="int" setter="" getter="" default="1">
+			wartość monet
+		</member>
+		<member name="save_id" type="String" setter="" getter="" default="&quot;&quot;">
+			id monet służące do sprawdzenia czy monety były już zebrane
+		</member>
+		<member name="collected" type="bool" setter="" getter="" default="false">
+			pole pomocniczne służące do znikania zebranych monet
+		</member>
+	</members>
+</class>

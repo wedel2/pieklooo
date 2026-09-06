@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="settings_meneger" inherits="Node" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		klasa settings meneger
+	</brief_description>
+	<description>
+		służy do zmiany rozdzielczości, w przyszłości gdy będą dodane dźwięki będzie rozbudowana o możliwość zmiany głoścności
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="apply_resolution">
+			<return type="void" />
+			<param index="0" name="resolution" type="Vector2i" />
+			<param index="1" name="save" type="bool" default="true" />
+			<description>
+			</description>
+		</method>
+		<method name="center_window">
+			<return type="void" />
+			<description>
+				ustaw okienko na środku
+			</description>
+		</method>
+		<method name="save_settings">
+			<return type="void" />
+			<description>
+				zapisz w jakiej rozdzielczości jest gra
+			</description>
+		</method>
+		<method name="load_settings">
+			<return type="void" />
+			<description>
+				wczytaj ustawienia
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="current_resolution" type="Vector2i" setter="" getter="" default="Vector2i(1280, 720)">
+			teraźniejsza rozdzielczość
+		</member>
+	</members>
+	<constants>
+		<constant name="SETTINGS_PATH" value="&quot;user://settings.cfg&quot;">
+			ścieżka do zmian ustawień
+		</constant>
+		<constant name="DEFAULT_RESOLUTION" value="Vector2i(1280, 720)">
+			rozdzielczość domyślna
+		</constant>
+		<constant name="RESOLUTIONS" value="Array[Vector2i]([Vector2i(960, 540), Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080)])">
+		</constant>
+	</constants>
+</class>

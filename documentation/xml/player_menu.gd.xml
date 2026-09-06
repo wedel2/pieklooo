@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="&quot;player_menu.gd&quot;" inherits="Control" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="refresh">
+			<return type="void" />
+			<description>
+				odśwież
+			</description>
+		</method>
+		<method name="_on_play_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_upgrade_damage_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_load_current_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_save_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_main_menu_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_coins_changed">
+			<return type="void" />
+			<param index="0" name="_new_amount" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_upgrades_changed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_upgrade_max_hp_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="coins_label" type="Label" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="damage_label" type="Label" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="play_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="upgrade_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="load_current_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="save_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="main_menu_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="max_hp_label" type="Label" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="upgrade_max_hp_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+	</members>
+</class>

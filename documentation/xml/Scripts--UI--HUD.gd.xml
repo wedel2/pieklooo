@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="&quot;Scripts/UI/HUD.gd&quot;" inherits="CanvasLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="update_hp">
+			<return type="void" />
+			<description>
+				zmienia hp gracza i poprawia pasek hp
+			</description>
+		</method>
+		<method name="update_coins">
+			<return type="void" />
+			<description>
+				zmienia ilość monet gracza
+			</description>
+		</method>
+		<method name="_on_player_hp_changed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_coins_changed">
+			<return type="void" />
+			<param index="0" name="_new_amount" type="int" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="progress_bar" type="ProgressBar" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="coin_label" type="Label" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="player" type="CharacterBody2D" setter="" getter="">
+		</member>
+	</members>
+</class>

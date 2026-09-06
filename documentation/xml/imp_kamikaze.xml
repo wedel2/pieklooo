@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="imp_kamikaze" inherits="CharacterBody2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Przeciwnik imp kamikaze
+	</brief_description>
+	<description>
+		przeciwnik wbiega w gracza i wybucha zadając obrażenia i ginąc
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_physics_process">
+			<return type="void" />
+			<param index="0" name="delta" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_player_detector_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_player_detector_body_exited">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="update_facing">
+			<return type="void" />
+			<description>
+				obracanie impa
+			</description>
+		</method>
+		<method name="_on_damage_area_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="check_player_collision">
+			<return type="void" />
+			<description>
+				sprawdza czy może wybuchnąć na graczu
+			</description>
+		</method>
+		<method name="explode_on_player">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="take_damage">
+			<return type="void" />
+			<param index="0" name="damage" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="die">
+			<return type="void" />
+			<description>
+				umieranko
+			</description>
+		</method>
+		<method name="disable_collisions">
+			<return type="void" />
+			<description>
+				usuń kolizje po śnierci
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="save_id" type="String" setter="" getter="" default="&quot;&quot;">
+			id przeciwnika do zapisu po śmierci
+		</member>
+		<member name="max_hp" type="int" setter="" getter="" default="15">
+			maksymalne hp
+		</member>
+		<member name="speed" type="float" setter="" getter="" default="180.0">
+			szybkość poruszania się
+		</member>
+		<member name="contact_damage" type="int" setter="" getter="" default="25">
+			obrażenia zadawane przy wybuchu
+		</member>
+		<member name="sprite" type="AnimatedSprite2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do animacji
+		</member>
+		<member name="body_collision" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do ciała impa
+		</member>
+		<member name="player_detector" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do obszaru wykrywania gracza
+		</member>
+		<member name="player_detector_collision" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			##referencja do obszaru w którym imp wybucha po odnalezieniu gracza
+		</member>
+		<member name="damage_area" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do obszaru w którym zadaje obrażenia przy wybuchu
+		</member>
+		<member name="damage_collision" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do obszaru w którym imp zadaje dmg
+		</member>
+		<member name="hurtbox" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+			hitbox impa
+		</member>
+		<member name="hurtbox_collision" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do obszaru hitboxu impa
+		</member>
+		<member name="hp" type="int" setter="" getter="">
+			obecne hp
+		</member>
+		<member name="player" type="Node2D" setter="" getter="" default="null">
+			pole pomocnicze do porównania z graczem
+		</member>
+		<member name="facing_direction" type="int" setter="" getter="" default="1">
+			kierunek ruchu
+		</member>
+		<member name="is_dead" type="bool" setter="" getter="" default="false">
+			pole pomocnicze do sprawdzenia czy żyje
+		</member>
+		<member name="is_hurt" type="bool" setter="" getter="" default="false">
+			pole pomocnicze do sprawdzenia czy właśnie otrzymuje obrażenia
+		</member>
+		<member name="has_exploded" type="bool" setter="" getter="" default="false">
+			pole pomocnicze do sprawdzenia czy wybuchł
+		</member>
+		<member name="hurt_generation" type="int" setter="" getter="" default="0">
+			pole pomocnicze do powrotu do poprzedniej czynności po otrzymaniu dmg
+		</member>
+	</members>
+</class>

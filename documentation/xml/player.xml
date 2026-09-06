@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="player" inherits="CharacterBody2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Postać gracza
+	</brief_description>
+	<description>
+		Postać może biegać w prawo i w lewo, skakać podnosić powerupy i bronie gdy ma podniesioną broń może również atakować gdy skończy mu się hp umiera
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_physics_process">
+			<return type="void" />
+			<param index="0" name="delta" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="update_facing">
+			<return type="void" />
+			<param index="0" name="direction" type="float" />
+			<description>
+				obracanie gracza
+			</description>
+		</method>
+		<method name="get_animation_name">
+			<return type="String" />
+			<param index="0" name="base_animation" type="String" />
+			<description>
+				zwraca odpowiednią nazwę animacji w zależności od broni gracza
+			</description>
+		</method>
+		<method name="play_animation">
+			<return type="void" />
+			<param index="0" name="animation_name" type="String" />
+			<description>
+				Odtwórz animację
+			</description>
+		</method>
+		<method name="get_max_hp">
+			<return type="int" />
+			<description>
+				Do ulepszeń MaxHP
+			</description>
+		</method>
+		<method name="take_damage">
+			<return type="void" />
+			<param index="0" name="damage" type="int" />
+			<description>
+				Dostań obrażenia
+			</description>
+		</method>
+		<method name="_on_hp_changed">
+			<return type="void" />
+			<description>
+				Przy zmianie HP sprawdź czy żyje
+			</description>
+		</method>
+		<method name="add_coins">
+			<return type="void" />
+			<param index="0" name="amount" type="int" />
+			<description>
+				Dodaj monety
+			</description>
+		</method>
+		<method name="equip_weapon">
+			<return type="void" />
+			<param index="0" name="weapon" type="WeaponData" />
+			<description>
+				Załóż broń
+			</description>
+		</method>
+		<method name="attack">
+			<return type="void" />
+			<description>
+				Atak ogólny przechodzi na atak dla wybranej broni
+			</description>
+		</method>
+		<method name="get_attack_damage">
+			<return type="int" />
+			<description>
+				zyskaj Atack damage razem z obrażeniami broni, ulepszeniami i powerupami
+			</description>
+		</method>
+		<method name="attack_bow">
+			<return type="void" />
+			<description>
+				atak łukiem
+			</description>
+		</method>
+		<method name="attack_sword">
+			<return type="void" />
+			<description>
+				Atak mieczem
+			</description>
+		</method>
+		<method name="_on_sword_hitbox_area_entered">
+			<return type="void" />
+			<param index="0" name="area" type="Area2D" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_animated_sprite_2d_frame_changed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="handle_sword_attack_frame">
+			<return type="void" />
+			<description>
+				zadaj dmg w odpowiedniej klatce animacji
+			</description>
+		</method>
+		<method name="handle_bow_attack_frame">
+			<return type="void" />
+			<description>
+				stwórz strzałę w odpowiedniej klatce animacji
+			</description>
+		</method>
+		<method name="shoot_arrow">
+			<return type="void" />
+			<description>
+				stwórz strzałę
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="wait_time" type="float" setter="" getter="" default="3.0">
+		</member>
+		<member name="is_dead" type="bool" setter="" getter="" default="false">
+			pole pomocnicze do sprawdzania czy gracz żyje
+		</member>
+		<member name="hp" type="int" setter="@hp_setter" getter="" default="100">
+			punkty życia gracza
+		</member>
+		<member name="coins" type="int" setter="@coins_setter" getter="" default="0">
+			monety gracza
+		</member>
+		<member name="facing_direction" type="int" setter="" getter="" default="1">
+			kierunek poruszania się
+		</member>
+		<member name="equipped_weapon" type="WeaponData" setter="" getter="" default="null">
+			podniesiona broń
+		</member>
+		<member name="animated_sprite" type="AnimatedSprite2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do animacji
+		</member>
+		<member name="is_attacking" type="bool" setter="" getter="" default="false">
+			pole pomocnicze do sprawdzania czy gracz jest w trakcie wykonywania ataku
+		</member>
+		<member name="sword_hitbox" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do obszaru w którym zadawany jest dmg przeciwnikom
+		</member>
+		<member name="sword_hitbox_offset" type="Vector2" setter="" getter="" default="Vector2(32, -25)">
+			przesunięcie obszaru sword hitbox
+		</member>
+		<member name="sword_shape" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			obszar w którym przeciwnicy dostają dmg przy ataku mieczem
+		</member>
+		<member name="sword_hit_enemies" type="Node[]" setter="" getter="" default="[]">
+			lista przeciwników którzy w danym ataku zostali trafieni mieczem
+		</member>
+		<member name="arrow_spawn_point" type="Marker2D" setter="" getter="" default="&lt;unknown&gt;">
+			punkt w którym tworzony jest obiekt arrow przy ataku łukiem
+		</member>
+		<member name="arrow_scene" type="PackedScene" setter="" getter="">
+			scena strzały
+		</member>
+		<member name="arrow_spawn_offset" type="Vector2" setter="" getter="" default="Vector2(35, -27)">
+			przesunięcie punktu w którym tworzony jest obiekt arrow
+		</member>
+		<member name="arrow_shot_this_attack" type="bool" setter="" getter="" default="false">
+			pole pomocnicze sprawdzające czy podczas tego ataku już wypuścił strzałę
+		</member>
+	</members>
+	<signals>
+		<signal name="hp_changed">
+			<description>
+			</description>
+		</signal>
+		<signal name="coins_changed">
+			<param index="0" name="new_amount" type="int" />
+			<description>
+			</description>
+		</signal>
+	</signals>
+	<constants>
+		<constant name="SPEED" value="350.0">
+			prędkość poruszania się
+		</constant>
+		<constant name="JUMP_VELOCITY" value="-350.0">
+			wysokość skoku
+		</constant>
+		<constant name="BOW_SHOOT_FRAME" value="9">
+			klataka w której tworzony jest obiekt arrrow
+		</constant>
+	</constants>
+</class>
