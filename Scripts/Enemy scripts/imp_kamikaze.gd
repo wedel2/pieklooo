@@ -1,56 +1,47 @@
+class_name imp_kamikaze
 extends CharacterBody2D
+##Przeciwnik imp kamikaze
+##
+##przeciwnik wbiega w gracza i wybucha zadając obrażenia i ginąc
+
+@export var save_id: String = ""##id przeciwnika do zapisu po śmierci
+
+@export var max_hp: int = 15##maksymalne hp
+@export var speed: float = 180.0##szybkość poruszania się
+@export var contact_damage: int = 25##obrażenia zadawane przy wybuchu
 
 
-@export var save_id: String = ""
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D##referencja do animacji
 
-@export var max_hp: int = 15
-@export var speed: float = 180.0
-@export var contact_damage: int = 25
+@onready var body_collision: CollisionShape2D = $CollisionShape2D##referencja do ciała impa
 
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
-@onready var body_collision: CollisionShape2D = (
-	$CollisionShape2D
-)
-
-@onready var player_detector: Area2D = (
-	$PlayerDetector
-)
-
-@onready var player_detector_collision: CollisionShape2D = (
-	$PlayerDetector/CollisionShape2D
-)
-
-@onready var damage_area: Area2D = (
-	$DamageArea
-)
-
-@onready var damage_collision: CollisionShape2D = (
-	$DamageArea/CollisionShape2D
-)
-
-@onready var hurtbox: Area2D = (
-	$hitBox
-)
-
-@onready var hurtbox_collision: CollisionShape2D = (
-	$hitBox/CollisionShape2D
-)
+@onready var player_detector: Area2D = $PlayerDetector##referencja do obszaru wykrywania gracza
 
 
-var hp: int
+@onready var player_detector_collision: CollisionShape2D = $PlayerDetector/CollisionShape2D####referencja do obszaru w którym imp wybucha po odnalezieniu gracza
 
-var player: Node2D = null
+@onready var damage_area: Area2D = $DamageArea##referencja do obszaru w którym zadaje obrażenia przy wybuchu
 
-var facing_direction: int = 1
+@onready var damage_collision: CollisionShape2D = $DamageArea/CollisionShape2D##referencja do obszaru w którym imp zadaje dmg
 
-var is_dead: bool = false
-var is_hurt: bool = false
+@onready var hurtbox: Area2D = $hitBox##hitbox impa
 
-var has_exploded: bool = false
+@onready var hurtbox_collision: CollisionShape2D = $hitBox/CollisionShape2D##referencja do obszaru hitboxu impa
 
-var hurt_generation: int = 0
+
+var hp: int##obecne hp
+
+var player: Node2D = null##pole pomocnicze do porównania z graczem
+
+var facing_direction: int = 1##kierunek ruchu
+
+var is_dead: bool = false##pole pomocnicze do sprawdzenia czy żyje
+var is_hurt: bool = false##pole pomocnicze do sprawdzenia czy właśnie otrzymuje obrażenia
+
+var has_exploded: bool = false##pole pomocnicze do sprawdzenia czy wybuchł
+
+var hurt_generation: int = 0##pole pomocnicze do powrotu do poprzedniej czynności po otrzymaniu dmg
 
 
 # ============================================================
@@ -59,9 +50,6 @@ var hurt_generation: int = 0
 
 func _ready() -> void:
 	hp = max_hp
-
-	# Podłączamy sygnały z kodu, żeby uniknąć problemów
-	# z brakującymi połączeniami w edytorze.
 
 	if not player_detector.body_entered.is_connected(
 		_on_player_detector_body_entered
