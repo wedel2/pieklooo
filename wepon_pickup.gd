@@ -1,5 +1,6 @@
+class_name wepon_pickup
 extends Area2D
-
+##broń do podniesienia
 
 @export var weapon: WeaponData
 
