@@ -1,34 +1,38 @@
 class_name Skeleton
 extends Node2D
-@export var save_id: String = ""
-@export var speed: float = 75.0 #szybkosc szkieletu
-@export var patrol_distance: float = 250.0 #odleglosc jaka patroluje szkielet w obie strony od pkt spawnu
-@export var max_hp: int = 30 #jesli trzeba to tlumaczyc to nie gry moze nie sa dla ciebie
-@export var floor_ray_offset: float = 20.0 #odleglosc od srodka body przewidujace krawedz platformy
-@export var wait_time: float = 3.0 #czas na idle na krawedzi patrolu
-@export var player_detector_offset: float = 10.0
-@export var hit_detector_offset: float = 10.0
-@export var attack_damage: int = 15
-@export var attack_hit_frames: Array[int] = [9, 10, 11]
-var is_waiting: bool = false
-var hp: int
-var direction: int = 1
-var start_x: float #startowa wspolzedna
-var is_dead: bool = false
-var player_in_attack_range: bool = false
-var is_attacking: bool = false
-var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
-var attack_has_hit: bool = false
+##Klasa skeleton
+##
+##Przeciwnik patrolujący teren i zadający obrażenia na krótkim dystansie
+
+@export var save_id: String = ""##zmienna do zapisu pokonanych przeciwników
+@export var speed: float = 75.0 ##szybkosc szkieletu
+@export var patrol_distance: float = 250.0 ##odleglosc jaka patroluje szkielet w obie strony od pkt spawnu
+@export var max_hp: int = 30 ##maksymalne pkt życia szkieletu
+@export var floor_ray_offset: float = 20.0 ##odleglosc od srodka body przewidujace krawedz platformy
+@export var wait_time: float = 3.0 ##czas na idle na krawedzi patrolu
+@export var player_detector_offset: float = 10.0##przesunięcie wykrycia gracza
+@export var hit_detector_offset: float = 10.0##przesunięcie obszaru w którym szkielet zadaje dmg przy ataku 
+@export var attack_damage: int = 15##obrażenia jakie zadaje szkielet
+@export var attack_hit_frames: Array[int] = [9, 10, 11]##klatki animacji ataku w których gracz może dostać dmg
+var is_waiting: bool = false##czy czeka na końcu patrolowanego obszaru
+var hp: int##aktualne punkty życia szkieletu
+var direction: int = 1##kierunek ruchu
+var start_x: float ##startowa wspolzedna
+var is_dead: bool = false##czy jest martwy
+var player_in_attack_range: bool = false##czy gracz jest w zasięgu ataku
+var is_attacking: bool = false##czy właśnie atakuje
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")##grawitacja
+var attack_has_hit: bool = false##czy atak trafił
 @onready var body: CharacterBody2D = $CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $CharacterBody2D/AnimatedSprite2D
 @onready var floor_ray: RayCast2D = $CharacterBody2D/FloorRay
 @onready var player_detector: Area2D = $CharacterBody2D/PlayerDetector
 @onready var hit_detector: Area2D = $CharacterBody2D/HitDetector
-var is_hurt: bool = false
+var is_hurt: bool = false##czy właśnie dostał obrażenia
 
-var attack_generation: int = 0
-var hurt_generation: int = 0
-var wait_generation: int = 0
+var attack_generation: int = 0##pole pomocnicze do powrotu do ataku
+var hurt_generation: int = 0##pole pomocnicze do powrotu do poprzedniej czynności po otrzymaniu dmg
+var wait_generation: int = 0##pole pomocnicze do powrotu do czekania na końcu patrolu
 
 ##funkcja nadaje wartość hp, zapisuje pozycję poziomą na której szkielet zaczyna, podłącza sygnał zmienianej klatki, oraz sprawdza czy nie był wcześniej pokonany przy wczytaniu
 func _ready() -> void:
