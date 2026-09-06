@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://hj6i4wibnit3"]
+
+[ext_resource type="Script" uid="uid://bq736m34tyq6e" path="res://Scripts/level_exit.gd" id="1_tuocj"]
+[ext_resource type="Texture2D" uid="uid://dxnnkfiuq5gfk" path="res://Asses/fantasy door.png" id="2_7rawc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x8y2"]
+size = Vector2(39, 35)
+
+[node name="LevelExit" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_tuocj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_7x8y2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7rawc")
+
+[node name="InteractionLabel" type="Label" parent="."]
+visible = false
+offset_left = -21.0
+offset_top = -28.0
+offset_right = 19.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 7
+text = "E - interact"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

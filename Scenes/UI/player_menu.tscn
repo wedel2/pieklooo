@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://b85apgsuo8fla"]
+
+[ext_resource type="Script" uid="uid://g5jcutxkwei3" path="res://player_menu.gd" id="1_udm3u"]
+
+[node name="PlayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_udm3u")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="CoinsLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Coins"
+
+[node name="DamageLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Damage"
+
+[node name="MaxHPLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="UpgradeDamage" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Upgrade DMG"
+
+[node name="UpgradeMaxHP" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadCurrentPlaythru" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Load game"
+
+[node name="Save" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save game"
+
+[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"

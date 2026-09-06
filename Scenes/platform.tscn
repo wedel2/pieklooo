@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd3xvrj20gfxx"]
+
+[ext_resource type="Texture2D" uid="uid://cv7kepetvmtt6" path="res://Asses/Tilemaps/Fantasy Swamp Forest/Free/Terrain_and_Props.png" id="1_mi635"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8bxr"]
+size = Vector2(49, 9)
+
+[node name="Platform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mi635")
+region_enabled = true
+region_rect = Rect2(191.402, 153.296, 49.3226, 22.8371)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_s8bxr")
+one_way_collision = true

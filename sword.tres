@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3 uid="uid://cexl2nsw37fn2"]
+
+[ext_resource type="Texture2D" uid="uid://ctbxp5r44hpk6" path="res://Asses/Sword&Shield/Sword&ShieldIcon.png" id="1_p71td"]
+[ext_resource type="Script" uid="uid://bbupvk5ew5pwy" path="res://Scripts/Wepons/wepon_data.gd" id="1_vfrml"]
+
+[resource]
+script = ExtResource("1_vfrml")
+weapon_name = "sword"
+weapon_type = 0
+pickup_texture = ExtResource("1_p71td")
+animation_suffix = "sword"
+damage = 10
+metadata/_custom_type_script = "uid://bbupvk5ew5pwy"

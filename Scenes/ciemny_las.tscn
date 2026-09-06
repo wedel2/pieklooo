@@ -1,0 +1,113 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdp45v1kgw3m4"]
+
+[ext_resource type="Texture2D" uid="uid://oatd8rpq831y" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0011_0.png" id="1_v0lvo"]
+[ext_resource type="Texture2D" uid="uid://bn0bl3j2ejloq" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0010_1.png" id="2_wm1gm"]
+[ext_resource type="Texture2D" uid="uid://dnjw06doavgks" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0009_2.png" id="3_intby"]
+[ext_resource type="Texture2D" uid="uid://crpxj86wqeano" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0008_3.png" id="4_fvden"]
+[ext_resource type="Texture2D" uid="uid://cvwv754ffkxh5" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0007_Lights.png" id="5_gveal"]
+[ext_resource type="Texture2D" uid="uid://clqe2bfxkvosr" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0006_4.png" id="6_akksn"]
+[ext_resource type="Texture2D" uid="uid://bw6h4a5f0ulww" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0005_5.png" id="7_3ibmv"]
+[ext_resource type="Texture2D" uid="uid://c4pck5wk1pmi1" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0004_Lights.png" id="8_5brrm"]
+[ext_resource type="Texture2D" uid="uid://b5ndxesmtq5x4" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0003_6.png" id="9_qn1nd"]
+[ext_resource type="Texture2D" uid="uid://4r778dweu7vb" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0002_7.png" id="10_rlffk"]
+[ext_resource type="Texture2D" uid="uid://dfv0q83nsoep6" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0001_8.png" id="11_s0wn5"]
+[ext_resource type="Texture2D" uid="uid://cfo1besuy5i2b" path="res://Asses/Backgrounds/Ciemny las/Background layers/Layer_0000_9.png" id="12_rmfg4"]
+
+[node name="Background" type="Node2D"]
+
+[node name="Rozbicie tla" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+repeat_size = Vector2(928, 793)
+
+[node name="Rozbicie tla" type="Sprite2D" parent="Rozbicie tla"]
+texture = ExtResource("1_v0lvo")
+centered = false
+
+[node name="Tlo" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Tlo" type="Sprite2D" parent="Tlo"]
+texture = ExtResource("2_wm1gm")
+centered = false
+
+[node name="Pnie mgla" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Pnie mgla" type="Sprite2D" parent="Pnie mgla"]
+texture = ExtResource("3_intby")
+centered = false
+
+[node name="Pnie bialy back" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Pnie bialy back" type="Sprite2D" parent="Pnie bialy back"]
+texture = ExtResource("4_fvden")
+centered = false
+
+[node name="Swiatlo2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Swiatlo2" type="Sprite2D" parent="Swiatlo2"]
+texture = ExtResource("5_gveal")
+centered = false
+
+[node name="Pnie background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Pnie background" type="Sprite2D" parent="Pnie background"]
+texture = ExtResource("6_akksn")
+centered = false
+
+[node name="Pnie2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Pnie2" type="Sprite2D" parent="Pnie2"]
+texture = ExtResource("7_3ibmv")
+centered = false
+
+[node name="Swiatlo" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Swiatlo" type="Sprite2D" parent="Swiatlo"]
+texture = ExtResource("8_5brrm")
+centered = false
+
+[node name="Pnie" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Pnie" type="Sprite2D" parent="Pnie"]
+texture = ExtResource("9_qn1nd")
+centered = false
+
+[node name="Korony" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Korony" type="Sprite2D" parent="Korony"]
+texture = ExtResource("10_rlffk")
+centered = false
+
+[node name="Trawa" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 1)
+repeat_size = Vector2(928, 0)
+
+[node name="Trawa" type="Sprite2D" parent="Trawa"]
+texture = ExtResource("11_s0wn5")
+centered = false
+
+[node name="Ziemia" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.6, 1)
+scroll_offset = Vector2(0, 2)
+repeat_size = Vector2(928, 0)
+
+[node name="Ziemia" type="Sprite2D" parent="Ziemia"]
+texture = ExtResource("12_rmfg4")
+centered = false
