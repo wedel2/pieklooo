@@ -1,12 +1,16 @@
+class_name arrow
 extends Area2D
+##Strzała gracza
+##
+##jeśli gracz jest wyposażony w broń - łuk, tworzy obiekty arrow żeby zadawać obrażenia przeciwnikom z dystansu
 
-@export var speed: float = 700.0
+@export var speed: float = 700.0##szybkość poruszania się strzały
 
-var direction: int = 1
-var damage: int = 5
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape: CollisionShape2D = $CollisionShape2D
-var is_flying: bool = true
+var direction: int = 1##kierunek poruszania się strzały
+var damage: int = 5##obrażenia strzały
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D##referencja do animacji strzały
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D##referencja do oszaru kolizji strzały
+var is_flying: bool = true##pole pomocnicze do sprawdzenia czy strzała jest w locie
 
 func _ready() -> void:##zaczyna przy powołaniu obiektu do życia
 	animated_sprite.play("fly")
