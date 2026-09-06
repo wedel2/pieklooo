@@ -1,34 +1,39 @@
+class_name player
 extends CharacterBody2D
+##Postać gracza
+##
+##Postać może biegać w prawo i w lewo, skakać podnosić powerupy i bronie
+##gdy ma podniesioną broń może również atakować
+##gdy skończy mu się hp umiera
 
-
-const SPEED = 350.0
-const JUMP_VELOCITY = -350.0
-const BOW_SHOOT_FRAME := 9
+const SPEED = 350.0##prędkość poruszania się
+const JUMP_VELOCITY = -350.0##wysokość skoku
+const BOW_SHOOT_FRAME := 9##klataka w której tworzony jest obiekt arrrow
 signal hp_changed
 signal coins_changed(new_amount: int)
 @export var wait_time: float = 3.0 #czas wyświetlania zdechlaka
-var is_dead: bool = false
-var hp: int =100:
+var is_dead: bool = false## pole pomocnicze do sprawdzania czy gracz żyje
+var hp: int =100:##punkty życia gracza
 	set(value):
 		hp=clamp(value, 0, get_max_hp())
 		hp_changed.emit()
-var coins: int = 0:
+var coins: int = 0:##monety gracza
 	set(value):
 		coins = max(value, 0)
 		coins_changed.emit(coins)
-var facing_direction: int = 1
+var facing_direction: int = 1##kierunek poruszania się
 
-var equipped_weapon: WeaponData = null
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-var is_attacking: bool = false
-@onready var sword_hitbox: Area2D = $SwordHitbox
-@export var sword_hitbox_offset: Vector2 = Vector2(32, -25)
-@onready var sword_shape: CollisionShape2D = $SwordHitbox/CollisionShape2D
-var sword_hit_enemies: Array[Node] = []
-@onready var arrow_spawn_point: Marker2D = $ArrowSpawnPoint
-@export var arrow_scene: PackedScene
-@export var arrow_spawn_offset := Vector2(35, -27)
-var arrow_shot_this_attack: bool = false
+var equipped_weapon: WeaponData = null##podniesiona broń
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D##referencja do animacji
+var is_attacking: bool = false##pole pomocnicze do sprawdzania czy gracz jest w trakcie wykonywania ataku
+@onready var sword_hitbox: Area2D = $SwordHitbox##referencja do obszaru w którym zadawany jest dmg przeciwnikom
+@export var sword_hitbox_offset: Vector2 = Vector2(32, -25)##przesunięcie obszaru sword hitbox
+@onready var sword_shape: CollisionShape2D = $SwordHitbox/CollisionShape2D##obszar w którym przeciwnicy dostają dmg przy ataku mieczem
+var sword_hit_enemies: Array[Node] = []##lista przeciwników którzy w danym ataku zostali trafieni mieczem
+@onready var arrow_spawn_point: Marker2D = $ArrowSpawnPoint##punkt w którym tworzony jest obiekt arrow przy ataku łukiem
+@export var arrow_scene: PackedScene##scena strzały
+@export var arrow_spawn_offset := Vector2(35, -27)##przesunięcie punktu w którym tworzony jest obiekt arrow
+var arrow_shot_this_attack: bool = false##pole pomocnicze sprawdzające czy podczas tego ataku już wypuścił strzałę
 
 func _ready() -> void:
 	sword_shape.disabled = true
