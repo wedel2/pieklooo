@@ -1,26 +1,28 @@
+class_name save_manager
 extends Node
-
+##Klasa save_manager
+##
+##zarząda procesem zapisu i wczytywania gry
 
 signal coins_changed(new_amount: int)
 signal upgrades_changed
 
 
-const SAVE_DIR := "user://saved_games"
-const SAVE_PATH := "user://saved_games/savegame.json"
+const SAVE_DIR := "user://saved_games"##ścieżka katalogu z zapisami gry
+const SAVE_PATH := "user://saved_games/savegame.json"##ścieżka do zapisu gry
 
-const DAMAGE_PER_LEVEL: int = 2
-const DAMAGE_UPGRADE_BASE_COST: int = 10
+const DAMAGE_PER_LEVEL: int = 2##dodatkowe zadawane obrażenia za poziom ulepszenia
+const DAMAGE_UPGRADE_BASE_COST: int = 10##dodatkowy koszt za każdy poziom ulepszenia dmg
 
-const BASE_MAX_HP: int = 100
-const MAX_HP_PER_LEVEL: int = 20
-const MAX_HP_UPGRADE_BASE_COST: int = 20
+const BASE_MAX_HP: int = 100##początkowa wartość maksymalnego hp
+const MAX_HP_PER_LEVEL: int = 20##dodatkowe punkty życia za poziom ulepszenia
+const MAX_HP_UPGRADE_BASE_COST: int = 20##dodatkowy koszt za każdy poziom ulepszenia hp
 
 
 # Stałe dane profilu:
 # - monety
 # - ulepszenia
-var profile_data: Dictionary = {}
-
+var profile_data: Dictionary = {}##pola do zapisu profilu gracza
 
 # Aktualna rozgrywka:
 # - poziom
@@ -29,18 +31,16 @@ var profile_data: Dictionary = {}
 # - broń
 # - pokonani przeciwnicy
 # - zebrane pickupy
-var playthrough_data: Dictionary = {}
+var playthrough_data: Dictionary = {}##pola do zapisu rozgrywki
 
 
 # Potrzebne podczas ładowania poziomu.
 # Coiny i przeciwnicy wykonują _ready() zanim GameManager
 # dostanie scene_changed.
-var active_scene_path: String = ""
+var active_scene_path: String = ""##ścieżka do aktualnego poziomu
 
 
-# Tymczasowy stan gracza używany podczas przejścia
-# level_01 -> level_02 itd.
-var transition_player_state: Dictionary = {}
+var transition_player_state: Dictionary = {}## Tymczasowy stan gracza używany podczas przejścia np. level_01 -> level_02 itd.
 
 
 func _ready() -> void:
