@@ -1,62 +1,57 @@
+class_name archer
 extends Node2D
+##Klasa przeciwnika archer
+##
+##Lokalizuje gracza i atakuje go z dystansu tworząc obiekty klasy enemy_arrow
+
+@export var save_id: String = ""##id powołanego obiektu archer
+
+@export var max_hp: int = 25##maksymalne zdrowie
+
+@export var attack_damage: int = 10##zadawane obrażenia
+
+@export var shoot_frame: int = 5##klatka animacji w której tworzony jest obiekt enemy_arrow
+
+@export var shoot_cooldown: float = 2.0##czas między strzałami
+
+@export var arrow_scene: PackedScene##obiekt enemy_arrow
+
+@export var arrow_spawn_offset: Vector2 = Vector2(25, -15)##przesunięcie punktu w którym tworzony jest obiekt enemy_arrow
 
 
-@export var save_id: String = ""
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D##node z animacjami przeciwnika
 
-@export var max_hp: int = 25
-
-@export var attack_damage: int = 10
-
-@export var shoot_frame: int = 5
-
-@export var shoot_cooldown: float = 2.0
-
-@export var arrow_scene: PackedScene
-
-@export var arrow_spawn_offset: Vector2 = Vector2(
-	25,
-	-15
-)
-
-
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
-@onready var player_detector: Area2D = $PlayerDetector
-@onready var body_collision: CollisionShape2D = (
-	$Body/CollisionShape2D
-)
+@onready var player_detector: Area2D = $PlayerDetector##obszar wykrywający gracza
+@onready var body_collision: CollisionShape2D = $Body/CollisionShape2D##obszar kolizji z graczem
 @onready var hurtbox: Area2D = $hitBox
 
-@onready var hurtbox_collision: CollisionShape2D = (
-	$hitBox/CollisionShape2D
-)
+@onready var hurtbox_collision: CollisionShape2D = $hitBox/CollisionShape2D##obszar trafienia przeciwnika
 
-@onready var arrow_spawn_point: Marker2D = (
-	$ArrowSpawnPoint
-)
-
-@onready var shoot_timer: Timer = $ShootTimer
+@onready var arrow_spawn_point: Marker2D = $ArrowSpawnPoint##punkt w którym tworzony jest obiekt enemy_arrow
 
 
-var hp: int
-
-var player: Node2D = null
-
-var facing_direction: int = 1
+@onready var shoot_timer: Timer = $ShootTimer##timer między strzałami
 
 
-var is_dead: bool = false
+var hp: int##aktualne hp
 
-var is_hurt: bool = false
+var player: Node2D = null##pole do porównania z graczem
 
-var is_attacking: bool = false
-
-
-var arrow_shot_this_attack: bool = false
+var facing_direction: int = 1##pole do obrotów w stronę gracza
 
 
-var attack_generation: int = 0
-var hurt_generation: int = 0
+var is_dead: bool = false##pole do sprawdzania czy archer żyje
+
+var is_hurt: bool = false##pole do sprawdzenia czy dostał obrażenia
+
+var is_attacking: bool = false##pole do sprawdzania czy aktualnie atakuje
+
+
+var arrow_shot_this_attack: bool = false##pole do sprawdzenia czy już wypuścił strzałę podczas tego ataku
+
+
+var attack_generation: int = 0##pole pomocnicze do powrotu do ataku po otrzymaniu obrażeń
+var hurt_generation: int = 0##pole pomocnicze po otrzymaniu obrażeń
 
 
 func _ready() -> void:##funkcja przy powołaniu obiektu do życia
