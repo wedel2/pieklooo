@@ -1,21 +1,18 @@
+class_name main_menu
 extends Control
+##Menu główne
+
+@onready var new_game_button: Button = $CenterContainer/VBoxContainer/NewGame##referencja do przycisku newgame
 
 
-@onready var new_game_button: Button = (
-	$CenterContainer/VBoxContainer/NewGame
-)
+@onready var continue_button: Button = $CenterContainer/VBoxContainer/Loadgame##referencja do przycisku load game
 
-@onready var continue_button: Button = (
-	$CenterContainer/VBoxContainer/Loadgame
-)
 
-@onready var resolution_option: OptionButton = (
-	$CenterContainer/VBoxContainer/ResolutionOption
-)
+@onready var resolution_option: OptionButton = $CenterContainer/VBoxContainer/ResolutionOption##referencja do przycisku ze zmianą rozdzielczości
 
-@onready var quit_button: Button = (
-	$CenterContainer/VBoxContainer/Exit
-)
+
+@onready var quit_button: Button = $CenterContainer/VBoxContainer/Exit##referencja do przycisku exit
+
 
 
 func _ready() -> void:
