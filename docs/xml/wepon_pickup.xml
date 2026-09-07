@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="wepon_pickup" inherits="Area2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		broń do podniesienia
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_process">
+			<return type="void" />
+			<param index="0" name="_delta" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_body_exited">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+			</description>
+		</method>
+		<method name="pick_up_weapon">
+			<return type="void" />
+			<description>
+				dodaj broń dla gracza po interakcji z obiektem
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="weapon" type="WeaponData" setter="" getter="">
+		</member>
+		<member name="sprite" type="Sprite2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="interaction_label" type="Label" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="player" type="CharacterBody2D" setter="" getter="" default="null">
+		</member>
+	</members>
+</class>

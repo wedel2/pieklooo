@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="&quot;Scripts/damage_powerup.gd&quot;" inherits="Area2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+				po zebraniu dodaj dmg do dmg gracza i usun powerup
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="damage_bonus" type="int" setter="" getter="" default="5">
+		</member>
+		<member name="save_id" type="String" setter="" getter="" default="&quot;&quot;">
+		</member>
+		<member name="animation_name" type="StringName" setter="" getter="" default="&amp;&quot;idle&quot;">
+		</member>
+		<member name="animated_sprite" type="AnimatedSprite2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="collected" type="bool" setter="" getter="" default="false">
+		</member>
+	</members>
+</class>

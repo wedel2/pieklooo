@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="WeaponData" inherits="Resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="weapon_name" type="String" setter="" getter="" default="&quot;&quot;">
+		</member>
+		<member name="weapon_type" type="int" setter="" getter="" enum="WeaponData.WeaponType">
+		</member>
+		<member name="pickup_texture" type="Texture2D" setter="" getter="">
+		</member>
+		<member name="animation_suffix" type="String" setter="" getter="" default="&quot;&quot;">
+		</member>
+		<member name="damage" type="int" setter="" getter="" default="10">
+		</member>
+	</members>
+	<constants>
+		<constant name="SWORD" value="0" enum="WeaponType">
+		</constant>
+		<constant name="BOW" value="1" enum="WeaponType">
+		</constant>
+	</constants>
+</class>

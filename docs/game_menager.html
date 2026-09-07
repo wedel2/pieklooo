@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>game_menager - dokumentacja</title>
+
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 25px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 35px;
     line-height: 1.6;
     color: #222;
+    background: #fff;
 }
 
 h1 {
@@ -20,16 +29,18 @@ h1 {
 }
 
 h2 {
-    margin-top: 35px;
+    margin-top: 40px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 6px;
 }
 
 h3 {
-    margin-top: 25px;
+    margin-top: 26px;
+    margin-bottom: 8px;
 }
 
 a {
+    color: #1d5fa7;
     text-decoration: none;
 }
 
@@ -38,17 +49,19 @@ a:hover {
 }
 
 code {
-    background: #eeeeee;
-    padding: 2px 5px;
+    font-family: Consolas, "Courier New", monospace;
+    background: #eee;
+    padding: 2px 6px;
     border-radius: 4px;
 }
 
 .signature {
+    font-family: Consolas, "Courier New", monospace;
     background: #f3f3f3;
     border-left: 4px solid #555;
-    padding: 10px;
-    font-family: Consolas, monospace;
-    margin-bottom: 10px;
+    padding: 10px 14px;
+    margin: 8px 0 12px 0;
+    overflow-wrap: anywhere;
 }
 
 .description {
@@ -59,18 +72,178 @@ code {
     color: #666;
 }
 
-.class-list li {
-    margin-bottom: 8px;
+.back {
+    margin-bottom: 25px;
 }
+
+.class-list li {
+    margin-bottom: 9px;
+}
+
+.info {
+    background: #f3f6f9;
+    border-left: 4px solid #4d718e;
+    padding: 12px 15px;
+    margin: 20px 0;
+}
+
+.xml-link {
+    margin-top: 15px;
+}
+
+footer {
+    margin-top: 60px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    color: #777;
+    font-size: 0.9em;
+}
+
 </style>
 </head>
 
 <body>
 
-<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+<div class="back">
+<a href="index.html">
+&larr; Powr&#243;t do listy klas
+</a>
+</div>
 
 <h1>game_menager</h1><p class="meta">
 Dziedziczy po: <code>Node</code>
-</p><h2>Opis</h2><p><strong><br>		og&#243;lny menager gry<br>	</strong></p><p class='description'>System.Xml.XmlElement</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>is_changing_scene</h3><div class='signature'>is_changing_scene: bool = false</div><p class='description'><br>			zmienna pomocnicza sprawdzająca czy jesteśmy w trakcie zmieniania sceny<br>		</p><h2>StaĹ‚e i wartoĹ›ci enum</h2><h3>MAIN_MENU_SCENE</h3><div class='signature'>MAIN_MENU_SCENE = "res://Scenes/UI/main_menu.tscn"</div><p class='description'><br>			ścieżka do sceny z menu gł&#243;wnym<br>		</p><h3>PLAYER_MENU_SCENE</h3><div class='signature'>PLAYER_MENU_SCENE = "res://Scenes/UI/player_menu.tscn"</div><p class='description'><br>			ścieżka do sceny z player menu<br>		</p><h3>START_SCENE</h3><div class='signature'>START_SCENE = "res://Scenes/levels/level_01.tscn"</div><p class='description'><br>			ścieżka do sceny z pierwszym poziomem<br>		</p><h2>Metody</h2><h3>has_save_game</h3><div class='signature'>has_save_game() -&gt; bool</div><p class='description'><br>				sprawdz czy istnieje zapisana gra<br>			</p><h3>new_game</h3><div class='signature'>new_game() -&gt; void</div><p class='description'><br>				włącza nową grę<br>			</p><h3>load_game</h3><div class='signature'>load_game() -&gt; void</div><p class='description'><br>				wczytuje poprzedni profil gracza<br>			</p><h3>start_play</h3><div class='signature'>start_play() -&gt; void</div><p class='description'><br>				zaczyna nową grę z nowym profilem gracza<br>			</p><h3>load_current_playthrough</h3><div class='signature'>load_current_playthrough() -&gt; void</div><p class='description'><br>				wczytuje zapisany profil gracza<br>			</p><h3>save_game</h3><div class='signature'>save_game() -&gt; void</div><p class='description'><br>				przekieruj do zapisu z savemanager<br>			</p><h3>change_level</h3><div class='signature'>change_level(next_level_path: String) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>go_to_player_menu</h3><div class='signature'>go_to_player_menu() -&gt; void</div><p class='description'><br>				przejdź do player menu<br>			</p><h3>go_to_main_menu</h3><div class='signature'>go_to_main_menu() -&gt; void</div><p class='description'><br>				przejdź do mainmenu<br>			</p><h3>change_scene</h3><div class='signature'>change_scene(scene_path: String) -&gt; bool</div><p class='description'>System.Xml.XmlElement</p><h3>quit_game</h3><div class='signature'>quit_game() -&gt; void</div><p class='description'><br>				kończy grę<br>			</p>
+</p><p class="xml-link">
+<a href="xml/game_menager.xml">
+Poka&#380; oryginalny XML wygenerowany przez Godot
+</a>
+</p><h2>Opis</h2><p>
+<strong><br>		og&#243;lny menager gry<br>	</strong>
+</p><div class="description">
+<em>Brak opisu.</em>
+</div><h2>Zmienne i w&#322;a&#347;ciwo&#347;ci</h2><h3>is_changing_scene</h3>
+
+<div class="signature">
+is_changing_scene: bool = false
+</div>
+
+<div class="description">
+<br>			zmienna pomocnicza sprawdzająca czy jesteśmy w trakcie zmieniania sceny<br>		
+</div><h2>Sta&#322;e</h2><h3>MAIN_MENU_SCENE</h3>
+
+<div class="signature">
+MAIN_MENU_SCENE = &quot;res://Scenes/UI/main_menu.tscn&quot;
+</div>
+
+<div class="description">
+<br>			ścieżka do sceny z menu gł&#243;wnym<br>		
+</div><h3>PLAYER_MENU_SCENE</h3>
+
+<div class="signature">
+PLAYER_MENU_SCENE = &quot;res://Scenes/UI/player_menu.tscn&quot;
+</div>
+
+<div class="description">
+<br>			ścieżka do sceny z player menu<br>		
+</div><h3>START_SCENE</h3>
+
+<div class="signature">
+START_SCENE = &quot;res://Scenes/levels/level_01.tscn&quot;
+</div>
+
+<div class="description">
+<br>			ścieżka do sceny z pierwszym poziomem<br>		
+</div><h2>Metody</h2><h3>has_save_game</h3>
+
+<div class="signature">
+has_save_game() -&gt; bool
+</div>
+
+<div class="description">
+<br>				sprawdz czy istnieje zapisana gra<br>			
+</div><h3>new_game</h3>
+
+<div class="signature">
+new_game() -&gt; void
+</div>
+
+<div class="description">
+<br>				włącza nową grę<br>			
+</div><h3>load_game</h3>
+
+<div class="signature">
+load_game() -&gt; void
+</div>
+
+<div class="description">
+<br>				wczytuje poprzedni profil gracza<br>			
+</div><h3>start_play</h3>
+
+<div class="signature">
+start_play() -&gt; void
+</div>
+
+<div class="description">
+<br>				zaczyna nową grę z nowym profilem gracza<br>			
+</div><h3>load_current_playthrough</h3>
+
+<div class="signature">
+load_current_playthrough() -&gt; void
+</div>
+
+<div class="description">
+<br>				wczytuje zapisany profil gracza<br>			
+</div><h3>save_game</h3>
+
+<div class="signature">
+save_game() -&gt; void
+</div>
+
+<div class="description">
+<br>				przekieruj do zapisu z savemanager<br>			
+</div><h3>change_level</h3>
+
+<div class="signature">
+change_level(next_level_path: String) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>go_to_player_menu</h3>
+
+<div class="signature">
+go_to_player_menu() -&gt; void
+</div>
+
+<div class="description">
+<br>				przejdź do player menu<br>			
+</div><h3>go_to_main_menu</h3>
+
+<div class="signature">
+go_to_main_menu() -&gt; void
+</div>
+
+<div class="description">
+<br>				przejdź do mainmenu<br>			
+</div><h3>change_scene</h3>
+
+<div class="signature">
+change_scene(scene_path: String) -&gt; bool
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>quit_game</h3>
+
+<div class="signature">
+quit_game() -&gt; void
+</div>
+
+<div class="description">
+<br>				kończy grę<br>			
+</div><footer>
+Dokumentacja wygenerowana na podstawie XML utworzonego
+przez Godot DocTool.
+</footer>
+
 </body>
 </html>

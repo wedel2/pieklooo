@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WeaponData - dokumentacja</title>
+
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 25px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 35px;
     line-height: 1.6;
     color: #222;
+    background: #fff;
 }
 
 h1 {
@@ -20,16 +29,18 @@ h1 {
 }
 
 h2 {
-    margin-top: 35px;
+    margin-top: 40px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 6px;
 }
 
 h3 {
-    margin-top: 25px;
+    margin-top: 26px;
+    margin-bottom: 8px;
 }
 
 a {
+    color: #1d5fa7;
     text-decoration: none;
 }
 
@@ -38,17 +49,19 @@ a:hover {
 }
 
 code {
-    background: #eeeeee;
-    padding: 2px 5px;
+    font-family: Consolas, "Courier New", monospace;
+    background: #eee;
+    padding: 2px 6px;
     border-radius: 4px;
 }
 
 .signature {
+    font-family: Consolas, "Courier New", monospace;
     background: #f3f3f3;
     border-left: 4px solid #555;
-    padding: 10px;
-    font-family: Consolas, monospace;
-    margin-bottom: 10px;
+    padding: 10px 14px;
+    margin: 8px 0 12px 0;
+    overflow-wrap: anywhere;
 }
 
 .description {
@@ -59,18 +72,98 @@ code {
     color: #666;
 }
 
-.class-list li {
-    margin-bottom: 8px;
+.back {
+    margin-bottom: 25px;
 }
+
+.class-list li {
+    margin-bottom: 9px;
+}
+
+.info {
+    background: #f3f6f9;
+    border-left: 4px solid #4d718e;
+    padding: 12px 15px;
+    margin: 20px 0;
+}
+
+.xml-link {
+    margin-top: 15px;
+}
+
+footer {
+    margin-top: 60px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    color: #777;
+    font-size: 0.9em;
+}
+
 </style>
 </head>
 
 <body>
 
-<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+<div class="back">
+<a href="index.html">
+&larr; Powr&#243;t do listy klas
+</a>
+</div>
 
 <h1>WeaponData</h1><p class="meta">
 Dziedziczy po: <code>Resource</code>
-</p><h2>Opis</h2><p><strong>System.Xml.XmlElement</strong></p><p class='description'>System.Xml.XmlElement</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>weapon_name</h3><div class='signature'>weapon_name: String = ""</div><p class='description'><em>Brak opisu.</em></p><h3>weapon_type</h3><div class='signature'>weapon_type: int</div><p class='description'><em>Brak opisu.</em></p><h3>pickup_texture</h3><div class='signature'>pickup_texture: Texture2D</div><p class='description'><em>Brak opisu.</em></p><h3>animation_suffix</h3><div class='signature'>animation_suffix: String = ""</div><p class='description'><em>Brak opisu.</em></p><h3>damage</h3><div class='signature'>damage: int = 10</div><p class='description'><em>Brak opisu.</em></p><h2>StaĹ‚e i wartoĹ›ci enum</h2><h3>SWORD</h3><p class='meta'>Enum: <code>WeaponType</code></p><div class='signature'>SWORD = 0</div><p class='description'><em>Brak opisu.</em></p><h3>BOW</h3><p class='meta'>Enum: <code>WeaponType</code></p><div class='signature'>BOW = 1</div><p class='description'><em>Brak opisu.</em></p>
+</p><p class="xml-link">
+<a href="xml/WeaponData.xml">
+Poka&#380; oryginalny XML wygenerowany przez Godot
+</a>
+</p><h2>Opis</h2><div class="description">
+<em>Brak opisu.</em>
+</div><h2>Zmienne i w&#322;a&#347;ciwo&#347;ci</h2><h3>weapon_name</h3>
+
+<div class="signature">
+weapon_name: String = &quot;&quot;
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>weapon_type</h3>
+
+<div class="signature">
+weapon_type: int
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>pickup_texture</h3>
+
+<div class="signature">
+pickup_texture: Texture2D
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>animation_suffix</h3>
+
+<div class="signature">
+animation_suffix: String = &quot;&quot;
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>damage</h3>
+
+<div class="signature">
+damage: int = 10
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h2>Typy wyliczeniowe (enum)</h2><h3>WeaponType</h3><ul><li>
+<code>SWORD = 0</code></li><li>
+<code>BOW = 1</code></li></ul><footer>
+Dokumentacja wygenerowana na podstawie XML utworzonego
+przez Godot DocTool.
+</footer>
+
 </body>
 </html>

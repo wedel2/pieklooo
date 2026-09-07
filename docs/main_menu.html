@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>main_menu - dokumentacja</title>
+
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 25px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 35px;
     line-height: 1.6;
     color: #222;
+    background: #fff;
 }
 
 h1 {
@@ -20,16 +29,18 @@ h1 {
 }
 
 h2 {
-    margin-top: 35px;
+    margin-top: 40px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 6px;
 }
 
 h3 {
-    margin-top: 25px;
+    margin-top: 26px;
+    margin-bottom: 8px;
 }
 
 a {
+    color: #1d5fa7;
     text-decoration: none;
 }
 
@@ -38,17 +49,19 @@ a:hover {
 }
 
 code {
-    background: #eeeeee;
-    padding: 2px 5px;
+    font-family: Consolas, "Courier New", monospace;
+    background: #eee;
+    padding: 2px 6px;
     border-radius: 4px;
 }
 
 .signature {
+    font-family: Consolas, "Courier New", monospace;
     background: #f3f3f3;
     border-left: 4px solid #555;
-    padding: 10px;
-    font-family: Consolas, monospace;
-    margin-bottom: 10px;
+    padding: 10px 14px;
+    margin: 8px 0 12px 0;
+    overflow-wrap: anywhere;
 }
 
 .description {
@@ -59,18 +72,138 @@ code {
     color: #666;
 }
 
-.class-list li {
-    margin-bottom: 8px;
+.back {
+    margin-bottom: 25px;
 }
+
+.class-list li {
+    margin-bottom: 9px;
+}
+
+.info {
+    background: #f3f6f9;
+    border-left: 4px solid #4d718e;
+    padding: 12px 15px;
+    margin: 20px 0;
+}
+
+.xml-link {
+    margin-top: 15px;
+}
+
+footer {
+    margin-top: 60px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    color: #777;
+    font-size: 0.9em;
+}
+
 </style>
 </head>
 
 <body>
 
-<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+<div class="back">
+<a href="index.html">
+&larr; Powr&#243;t do listy klas
+</a>
+</div>
 
 <h1>main_menu</h1><p class="meta">
 Dziedziczy po: <code>Control</code>
-</p><h2>Opis</h2><p><strong><br>		Menu gł&#243;wne<br>	</strong></p><p class='description'>System.Xml.XmlElement</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>new_game_button</h3><div class='signature'>new_game_button: Button = <unknown></div><p class='description'><br>			referencja do przycisku newgame<br>		</p><h3>continue_button</h3><div class='signature'>continue_button: Button = <unknown></div><p class='description'><br>			referencja do przycisku load game<br>		</p><h3>resolution_option</h3><div class='signature'>resolution_option: OptionButton = <unknown></div><p class='description'><br>			referencja do przycisku ze zmianą rozdzielczości<br>		</p><h3>quit_button</h3><div class='signature'>quit_button: Button = <unknown></div><p class='description'><br>			referencja do przycisku exit<br>		</p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>setup_resolution_options</h3><div class='signature'>setup_resolution_options() -&gt; void</div><p class='description'><br>				zmień rozmiar okna gry<br>			</p><h3>_on_new_game_button_pressed</h3><div class='signature'>_on_new_game_button_pressed() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_on_continue_button_pressed</h3><div class='signature'>_on_continue_button_pressed() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_on_quit_button_pressed</h3><div class='signature'>_on_quit_button_pressed() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_on_resolution_selected</h3><div class='signature'>_on_resolution_selected(index: int) -&gt; void</div><p class='description'>System.Xml.XmlElement</p>
+</p><p class="xml-link">
+<a href="xml/main_menu.xml">
+Poka&#380; oryginalny XML wygenerowany przez Godot
+</a>
+</p><h2>Opis</h2><p>
+<strong><br>		Menu gł&#243;wne<br>	</strong>
+</p><div class="description">
+<em>Brak opisu.</em>
+</div><h2>Zmienne i w&#322;a&#347;ciwo&#347;ci</h2><h3>new_game_button</h3>
+
+<div class="signature">
+new_game_button: Button = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do przycisku newgame<br>		
+</div><h3>continue_button</h3>
+
+<div class="signature">
+continue_button: Button = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do przycisku load game<br>		
+</div><h3>resolution_option</h3>
+
+<div class="signature">
+resolution_option: OptionButton = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do przycisku ze zmianą rozdzielczości<br>		
+</div><h3>quit_button</h3>
+
+<div class="signature">
+quit_button: Button = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do przycisku exit<br>		
+</div><h2>Metody</h2><h3>_ready</h3>
+
+<div class="signature">
+_ready() -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>setup_resolution_options</h3>
+
+<div class="signature">
+setup_resolution_options() -&gt; void
+</div>
+
+<div class="description">
+<br>				zmień rozmiar okna gry<br>			
+</div><h3>_on_new_game_button_pressed</h3>
+
+<div class="signature">
+_on_new_game_button_pressed() -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>_on_continue_button_pressed</h3>
+
+<div class="signature">
+_on_continue_button_pressed() -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>_on_quit_button_pressed</h3>
+
+<div class="signature">
+_on_quit_button_pressed() -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>_on_resolution_selected</h3>
+
+<div class="signature">
+_on_resolution_selected(index: int) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><footer>
+Dokumentacja wygenerowana na podstawie XML utworzonego
+przez Godot DocTool.
+</footer>
+
 </body>
 </html>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="game_menager" inherits="Node" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		ogólny menager gry
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="has_save_game">
+			<return type="bool" />
+			<description>
+				sprawdz czy istnieje zapisana gra
+			</description>
+		</method>
+		<method name="new_game">
+			<return type="void" />
+			<description>
+				włącza nową grę
+			</description>
+		</method>
+		<method name="load_game">
+			<return type="void" />
+			<description>
+				wczytuje poprzedni profil gracza
+			</description>
+		</method>
+		<method name="start_play">
+			<return type="void" />
+			<description>
+				zaczyna nową grę z nowym profilem gracza
+			</description>
+		</method>
+		<method name="load_current_playthrough">
+			<return type="void" />
+			<description>
+				wczytuje zapisany profil gracza
+			</description>
+		</method>
+		<method name="save_game">
+			<return type="void" />
+			<description>
+				przekieruj do zapisu z savemanager
+			</description>
+		</method>
+		<method name="change_level">
+			<return type="void" />
+			<param index="0" name="next_level_path" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="go_to_player_menu">
+			<return type="void" />
+			<description>
+				przejdź do player menu
+			</description>
+		</method>
+		<method name="go_to_main_menu">
+			<return type="void" />
+			<description>
+				przejdź do mainmenu
+			</description>
+		</method>
+		<method name="change_scene">
+			<return type="bool" />
+			<param index="0" name="scene_path" type="String" />
+			<description>
+			</description>
+		</method>
+		<method name="quit_game">
+			<return type="void" />
+			<description>
+				kończy grę
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="is_changing_scene" type="bool" setter="" getter="" default="false">
+			zmienna pomocnicza sprawdzająca czy jesteśmy w trakcie zmieniania sceny
+		</member>
+	</members>
+	<constants>
+		<constant name="MAIN_MENU_SCENE" value="&quot;res://Scenes/UI/main_menu.tscn&quot;">
+			ścieżka do sceny z menu głównym
+		</constant>
+		<constant name="PLAYER_MENU_SCENE" value="&quot;res://Scenes/UI/player_menu.tscn&quot;">
+			ścieżka do sceny z player menu
+		</constant>
+		<constant name="START_SCENE" value="&quot;res://Scenes/levels/level_01.tscn&quot;">
+			ścieżka do sceny z pierwszym poziomem
+		</constant>
+	</constants>
+</class>

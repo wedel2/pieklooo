@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="archer" inherits="Node2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Klasa przeciwnika archer
+	</brief_description>
+	<description>
+		Lokalizuje gracza i atakuje go z dystansu tworząc obiekty klasy enemy_arrow
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+				funkcja przy powołaniu obiektu do życia
+			</description>
+		</method>
+		<method name="_on_player_detector_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+				namierzanie gracza
+			</description>
+		</method>
+		<method name="_on_player_detector_body_exited">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+				koniec namierzania gracza
+			</description>
+		</method>
+		<method name="_on_shoot_timer_timeout">
+			<return type="void" />
+			<description>
+				timer między atakami
+			</description>
+		</method>
+		<method name="update_facing">
+			<return type="void" />
+			<description>
+				obracanie w stronę gracza
+			</description>
+		</method>
+		<method name="_process">
+			<return type="void" />
+			<param index="0" name="_delta" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="try_attack">
+			<return type="void" />
+			<description>
+				próba wykonania ataku
+			</description>
+		</method>
+		<method name="_on_sprite_frame_changed">
+			<return type="void" />
+			<description>
+				sprawdza kiedy archer moze wypuscic strzale
+			</description>
+		</method>
+		<method name="shoot_arrow">
+			<return type="void" />
+			<description>
+				tworzy obiekt enemy arrow
+			</description>
+		</method>
+		<method name="take_damage">
+			<return type="void" />
+			<param index="0" name="damage" type="int" />
+			<description>
+				przyjmowanie obrażeń
+			</description>
+		</method>
+		<method name="die">
+			<return type="void" />
+			<description>
+				umieranko
+			</description>
+		</method>
+		<method name="disable_collisions">
+			<return type="void" />
+			<description>
+				usuwa kolizje z graczem po smierci
+			</description>
+		</method>
+		<method name="restore_dead_state">
+			<return type="void" />
+			<description>
+				jeśli był zabity to przy wczytaniu wróć do bycia martwym
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="save_id" type="String" setter="" getter="" default="&quot;&quot;">
+			id powołanego obiektu archer
+		</member>
+		<member name="max_hp" type="int" setter="" getter="" default="25">
+			maksymalne zdrowie
+		</member>
+		<member name="attack_damage" type="int" setter="" getter="" default="10">
+			zadawane obrażenia
+		</member>
+		<member name="shoot_frame" type="int" setter="" getter="" default="5">
+			klatka animacji w której tworzony jest obiekt enemy_arrow
+		</member>
+		<member name="shoot_cooldown" type="float" setter="" getter="" default="2.0">
+			czas między strzałami
+		</member>
+		<member name="arrow_scene" type="PackedScene" setter="" getter="">
+			obiekt enemy_arrow
+		</member>
+		<member name="arrow_spawn_offset" type="Vector2" setter="" getter="" default="Vector2(25, -15)">
+			przesunięcie punktu w którym tworzony jest obiekt enemy_arrow
+		</member>
+		<member name="sprite" type="AnimatedSprite2D" setter="" getter="" default="&lt;unknown&gt;">
+			node z animacjami przeciwnika
+		</member>
+		<member name="player_detector" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+			obszar wykrywający gracza
+		</member>
+		<member name="body_collision" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			obszar kolizji z graczem
+		</member>
+		<member name="hurtbox" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="hurtbox_collision" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			obszar trafienia przeciwnika
+		</member>
+		<member name="arrow_spawn_point" type="Marker2D" setter="" getter="" default="&lt;unknown&gt;">
+			punkt w którym tworzony jest obiekt enemy_arrow
+		</member>
+		<member name="shoot_timer" type="Timer" setter="" getter="" default="&lt;unknown&gt;">
+			timer między strzałami
+		</member>
+		<member name="hp" type="int" setter="" getter="">
+			aktualne hp
+		</member>
+		<member name="player" type="Node2D" setter="" getter="" default="null">
+			pole do porównania z graczem
+		</member>
+		<member name="facing_direction" type="int" setter="" getter="" default="1">
+			pole do obrotów w stronę gracza
+		</member>
+		<member name="is_dead" type="bool" setter="" getter="" default="false">
+			pole do sprawdzania czy archer żyje
+		</member>
+		<member name="is_hurt" type="bool" setter="" getter="" default="false">
+			pole do sprawdzenia czy dostał obrażenia
+		</member>
+		<member name="is_attacking" type="bool" setter="" getter="" default="false">
+			pole do sprawdzania czy aktualnie atakuje
+		</member>
+		<member name="arrow_shot_this_attack" type="bool" setter="" getter="" default="false">
+			pole do sprawdzenia czy już wypuścił strzałę podczas tego ataku
+		</member>
+		<member name="attack_generation" type="int" setter="" getter="" default="0">
+			pole pomocnicze do powrotu do ataku po otrzymaniu obrażeń
+		</member>
+		<member name="hurt_generation" type="int" setter="" getter="" default="0">
+			pole pomocnicze po otrzymaniu obrażeń
+		</member>
+	</members>
+</class>

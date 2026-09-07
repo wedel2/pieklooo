@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>settings_meneger - dokumentacja</title>
+
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 25px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 35px;
     line-height: 1.6;
     color: #222;
+    background: #fff;
 }
 
 h1 {
@@ -20,16 +29,18 @@ h1 {
 }
 
 h2 {
-    margin-top: 35px;
+    margin-top: 40px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 6px;
 }
 
 h3 {
-    margin-top: 25px;
+    margin-top: 26px;
+    margin-bottom: 8px;
 }
 
 a {
+    color: #1d5fa7;
     text-decoration: none;
 }
 
@@ -38,17 +49,19 @@ a:hover {
 }
 
 code {
-    background: #eeeeee;
-    padding: 2px 5px;
+    font-family: Consolas, "Courier New", monospace;
+    background: #eee;
+    padding: 2px 6px;
     border-radius: 4px;
 }
 
 .signature {
+    font-family: Consolas, "Courier New", monospace;
     background: #f3f3f3;
     border-left: 4px solid #555;
-    padding: 10px;
-    font-family: Consolas, monospace;
-    margin-bottom: 10px;
+    padding: 10px 14px;
+    margin: 8px 0 12px 0;
+    overflow-wrap: anywhere;
 }
 
 .description {
@@ -59,18 +72,130 @@ code {
     color: #666;
 }
 
-.class-list li {
-    margin-bottom: 8px;
+.back {
+    margin-bottom: 25px;
 }
+
+.class-list li {
+    margin-bottom: 9px;
+}
+
+.info {
+    background: #f3f6f9;
+    border-left: 4px solid #4d718e;
+    padding: 12px 15px;
+    margin: 20px 0;
+}
+
+.xml-link {
+    margin-top: 15px;
+}
+
+footer {
+    margin-top: 60px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    color: #777;
+    font-size: 0.9em;
+}
+
 </style>
 </head>
 
 <body>
 
-<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+<div class="back">
+<a href="index.html">
+&larr; Powr&#243;t do listy klas
+</a>
+</div>
 
 <h1>settings_meneger</h1><p class="meta">
 Dziedziczy po: <code>Node</code>
-</p><h2>Opis</h2><p><strong><br>		klasa settings meneger<br>	</strong></p><p class='description'><br>		służy do zmiany rozdzielczości, w przyszłości gdy będą dodane dźwięki będzie rozbudowana o możliwość zmiany głoścności<br>	</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>current_resolution</h3><div class='signature'>current_resolution: Vector2i = Vector2i(1280, 720)</div><p class='description'><br>			teraźniejsza rozdzielczość<br>		</p><h2>StaĹ‚e i wartoĹ›ci enum</h2><h3>SETTINGS_PATH</h3><div class='signature'>SETTINGS_PATH = "user://settings.cfg"</div><p class='description'><br>			ścieżka do zmian ustawień<br>		</p><h3>DEFAULT_RESOLUTION</h3><div class='signature'>DEFAULT_RESOLUTION = Vector2i(1280, 720)</div><p class='description'><br>			rozdzielczość domyślna<br>		</p><h3>RESOLUTIONS</h3><div class='signature'>RESOLUTIONS = Array[Vector2i]([Vector2i(960, 540), Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080)])</div><p class='description'><em>Brak opisu.</em></p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>apply_resolution</h3><div class='signature'>apply_resolution(resolution: Vector2i, save: bool = true) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>center_window</h3><div class='signature'>center_window() -&gt; void</div><p class='description'><br>				ustaw okienko na środku<br>			</p><h3>save_settings</h3><div class='signature'>save_settings() -&gt; void</div><p class='description'><br>				zapisz w jakiej rozdzielczości jest gra<br>			</p><h3>load_settings</h3><div class='signature'>load_settings() -&gt; void</div><p class='description'><br>				wczytaj ustawienia<br>			</p>
+</p><p class="xml-link">
+<a href="xml/settings_meneger.xml">
+Poka&#380; oryginalny XML wygenerowany przez Godot
+</a>
+</p><h2>Opis</h2><p>
+<strong><br>		klasa settings meneger<br>	</strong>
+</p><div class="description">
+<br>		służy do zmiany rozdzielczości, w przyszłości gdy będą dodane dźwięki będzie rozbudowana o możliwość zmiany głoścności<br>	
+</div><h2>Zmienne i w&#322;a&#347;ciwo&#347;ci</h2><h3>current_resolution</h3>
+
+<div class="signature">
+current_resolution: Vector2i = Vector2i(1280, 720)
+</div>
+
+<div class="description">
+<br>			teraźniejsza rozdzielczość<br>		
+</div><h2>Sta&#322;e</h2><h3>SETTINGS_PATH</h3>
+
+<div class="signature">
+SETTINGS_PATH = &quot;user://settings.cfg&quot;
+</div>
+
+<div class="description">
+<br>			ścieżka do zmian ustawień<br>		
+</div><h3>DEFAULT_RESOLUTION</h3>
+
+<div class="signature">
+DEFAULT_RESOLUTION = Vector2i(1280, 720)
+</div>
+
+<div class="description">
+<br>			rozdzielczość domyślna<br>		
+</div><h3>RESOLUTIONS</h3>
+
+<div class="signature">
+RESOLUTIONS = Array[Vector2i]([Vector2i(960, 540), Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080)])
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h2>Metody</h2><h3>_ready</h3>
+
+<div class="signature">
+_ready() -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>apply_resolution</h3>
+
+<div class="signature">
+apply_resolution(resolution: Vector2i, save: bool = true) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>center_window</h3>
+
+<div class="signature">
+center_window() -&gt; void
+</div>
+
+<div class="description">
+<br>				ustaw okienko na środku<br>			
+</div><h3>save_settings</h3>
+
+<div class="signature">
+save_settings() -&gt; void
+</div>
+
+<div class="description">
+<br>				zapisz w jakiej rozdzielczości jest gra<br>			
+</div><h3>load_settings</h3>
+
+<div class="signature">
+load_settings() -&gt; void
+</div>
+
+<div class="description">
+<br>				wczytaj ustawienia<br>			
+</div><footer>
+Dokumentacja wygenerowana na podstawie XML utworzonego
+przez Godot DocTool.
+</footer>
+
 </body>
 </html>

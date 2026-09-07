@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="arrow" inherits="Area2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Strzała gracza
+	</brief_description>
+	<description>
+		jeśli gracz jest wyposażony w broń - łuk, tworzy obiekty arrow żeby zadawać obrażenia przeciwnikom z dystansu
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+				zaczyna przy powołaniu obiektu do życia
+			</description>
+		</method>
+		<method name="_physics_process">
+			<return type="void" />
+			<param index="0" name="delta" type="float" />
+			<description>
+			</description>
+		</method>
+		<method name="setup">
+			<return type="void" />
+			<param index="0" name="new_direction" type="int" />
+			<param index="1" name="new_damage" type="int" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_area_entered">
+			<return type="void" />
+			<param index="0" name="area" type="Area2D" />
+			<description>
+			</description>
+		</method>
+		<method name="hit_enemy">
+			<return type="void" />
+			<description>
+				jak trafi to usuń strzałę
+			</description>
+		</method>
+		<method name="_on_visible_on_screen_notifier_2d_screen_exited">
+			<return type="void" />
+			<description>
+				poza ekranem usun strzałę
+			</description>
+		</method>
+		<method name="_on_body_entered">
+			<return type="void" />
+			<param index="0" name="body" type="Node2D" />
+			<description>
+				jak uderzy w teren
+			</description>
+		</method>
+		<method name="hit_terrain">
+			<return type="void" />
+			<description>
+				jak uderzy w teren to puść animację uderzania w teren po czym usun strzałę
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="speed" type="float" setter="" getter="" default="700.0">
+			szybkość poruszania się strzały
+		</member>
+		<member name="direction" type="int" setter="" getter="" default="1">
+			kierunek poruszania się strzały
+		</member>
+		<member name="damage" type="int" setter="" getter="" default="5">
+			obrażenia strzały
+		</member>
+		<member name="animated_sprite" type="AnimatedSprite2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do animacji strzały
+		</member>
+		<member name="collision_shape" type="CollisionShape2D" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do oszaru kolizji strzały
+		</member>
+		<member name="is_flying" type="bool" setter="" getter="" default="true">
+			pole pomocnicze do sprawdzenia czy strzała jest w locie
+		</member>
+	</members>
+</class>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="main_menu" inherits="Control" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Menu główne
+	</brief_description>
+	<description>
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="setup_resolution_options">
+			<return type="void" />
+			<description>
+				zmień rozmiar okna gry
+			</description>
+		</method>
+		<method name="_on_new_game_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_continue_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_quit_button_pressed">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="_on_resolution_selected">
+			<return type="void" />
+			<param index="0" name="index" type="int" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="new_game_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do przycisku newgame
+		</member>
+		<member name="continue_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do przycisku load game
+		</member>
+		<member name="resolution_option" type="OptionButton" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do przycisku ze zmianą rozdzielczości
+		</member>
+		<member name="quit_button" type="Button" setter="" getter="" default="&lt;unknown&gt;">
+			referencja do przycisku exit
+		</member>
+	</members>
+</class>

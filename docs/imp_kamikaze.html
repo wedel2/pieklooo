@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>imp_kamikaze - dokumentacja</title>
+
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 25px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 35px;
     line-height: 1.6;
     color: #222;
+    background: #fff;
 }
 
 h1 {
@@ -20,16 +29,18 @@ h1 {
 }
 
 h2 {
-    margin-top: 35px;
+    margin-top: 40px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 6px;
 }
 
 h3 {
-    margin-top: 25px;
+    margin-top: 26px;
+    margin-bottom: 8px;
 }
 
 a {
+    color: #1d5fa7;
     text-decoration: none;
 }
 
@@ -38,17 +49,19 @@ a:hover {
 }
 
 code {
-    background: #eeeeee;
-    padding: 2px 5px;
+    font-family: Consolas, "Courier New", monospace;
+    background: #eee;
+    padding: 2px 6px;
     border-radius: 4px;
 }
 
 .signature {
+    font-family: Consolas, "Courier New", monospace;
     background: #f3f3f3;
     border-left: 4px solid #555;
-    padding: 10px;
-    font-family: Consolas, monospace;
-    margin-bottom: 10px;
+    padding: 10px 14px;
+    margin: 8px 0 12px 0;
+    overflow-wrap: anywhere;
 }
 
 .description {
@@ -59,18 +72,298 @@ code {
     color: #666;
 }
 
-.class-list li {
-    margin-bottom: 8px;
+.back {
+    margin-bottom: 25px;
 }
+
+.class-list li {
+    margin-bottom: 9px;
+}
+
+.info {
+    background: #f3f6f9;
+    border-left: 4px solid #4d718e;
+    padding: 12px 15px;
+    margin: 20px 0;
+}
+
+.xml-link {
+    margin-top: 15px;
+}
+
+footer {
+    margin-top: 60px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    color: #777;
+    font-size: 0.9em;
+}
+
 </style>
 </head>
 
 <body>
 
-<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+<div class="back">
+<a href="index.html">
+&larr; Powr&#243;t do listy klas
+</a>
+</div>
 
 <h1>imp_kamikaze</h1><p class="meta">
 Dziedziczy po: <code>CharacterBody2D</code>
-</p><h2>Opis</h2><p><strong><br>		Przeciwnik imp kamikaze<br>	</strong></p><p class='description'><br>		przeciwnik wbiega w gracza i wybucha zadając obrażenia i ginąc<br>	</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>save_id</h3><div class='signature'>save_id: String = ""</div><p class='description'><br>			id przeciwnika do zapisu po śmierci<br>		</p><h3>max_hp</h3><div class='signature'>max_hp: int = 15</div><p class='description'><br>			maksymalne hp<br>		</p><h3>speed</h3><div class='signature'>speed: float = 180.0</div><p class='description'><br>			szybkość poruszania się<br>		</p><h3>contact_damage</h3><div class='signature'>contact_damage: int = 25</div><p class='description'><br>			obrażenia zadawane przy wybuchu<br>		</p><h3>sprite</h3><div class='signature'>sprite: AnimatedSprite2D = <unknown></div><p class='description'><br>			referencja do animacji<br>		</p><h3>body_collision</h3><div class='signature'>body_collision: CollisionShape2D = <unknown></div><p class='description'><br>			referencja do ciała impa<br>		</p><h3>player_detector</h3><div class='signature'>player_detector: Area2D = <unknown></div><p class='description'><br>			referencja do obszaru wykrywania gracza<br>		</p><h3>player_detector_collision</h3><div class='signature'>player_detector_collision: CollisionShape2D = <unknown></div><p class='description'><br>			##referencja do obszaru w kt&#243;rym imp wybucha po odnalezieniu gracza<br>		</p><h3>damage_area</h3><div class='signature'>damage_area: Area2D = <unknown></div><p class='description'><br>			referencja do obszaru w kt&#243;rym zadaje obrażenia przy wybuchu<br>		</p><h3>damage_collision</h3><div class='signature'>damage_collision: CollisionShape2D = <unknown></div><p class='description'><br>			referencja do obszaru w kt&#243;rym imp zadaje dmg<br>		</p><h3>hurtbox</h3><div class='signature'>hurtbox: Area2D = <unknown></div><p class='description'><br>			hitbox impa<br>		</p><h3>hurtbox_collision</h3><div class='signature'>hurtbox_collision: CollisionShape2D = <unknown></div><p class='description'><br>			referencja do obszaru hitboxu impa<br>		</p><h3>hp</h3><div class='signature'>hp: int</div><p class='description'><br>			obecne hp<br>		</p><h3>player</h3><div class='signature'>player: Node2D = null</div><p class='description'><br>			pole pomocnicze do por&#243;wnania z graczem<br>		</p><h3>facing_direction</h3><div class='signature'>facing_direction: int = 1</div><p class='description'><br>			kierunek ruchu<br>		</p><h3>is_dead</h3><div class='signature'>is_dead: bool = false</div><p class='description'><br>			pole pomocnicze do sprawdzenia czy żyje<br>		</p><h3>is_hurt</h3><div class='signature'>is_hurt: bool = false</div><p class='description'><br>			pole pomocnicze do sprawdzenia czy właśnie otrzymuje obrażenia<br>		</p><h3>has_exploded</h3><div class='signature'>has_exploded: bool = false</div><p class='description'><br>			pole pomocnicze do sprawdzenia czy wybuchł<br>		</p><h3>hurt_generation</h3><div class='signature'>hurt_generation: int = 0</div><p class='description'><br>			pole pomocnicze do powrotu do poprzedniej czynności po otrzymaniu dmg<br>		</p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_physics_process</h3><div class='signature'>_physics_process(delta: float) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_on_player_detector_body_entered</h3><div class='signature'>_on_player_detector_body_entered(body: Node2D) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_on_player_detector_body_exited</h3><div class='signature'>_on_player_detector_body_exited(body: Node2D) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>update_facing</h3><div class='signature'>update_facing() -&gt; void</div><p class='description'><br>				obracanie impa<br>			</p><h3>_on_damage_area_body_entered</h3><div class='signature'>_on_damage_area_body_entered(body: Node2D) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>check_player_collision</h3><div class='signature'>check_player_collision() -&gt; void</div><p class='description'><br>				sprawdza czy może wybuchnąć na graczu<br>			</p><h3>explode_on_player</h3><div class='signature'>explode_on_player(body: Node2D) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>take_damage</h3><div class='signature'>take_damage(damage: int) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>die</h3><div class='signature'>die() -&gt; void</div><p class='description'><br>				umieranko<br>			</p><h3>disable_collisions</h3><div class='signature'>disable_collisions() -&gt; void</div><p class='description'><br>				usuń kolizje po śnierci<br>			</p>
+</p><p class="xml-link">
+<a href="xml/imp_kamikaze.xml">
+Poka&#380; oryginalny XML wygenerowany przez Godot
+</a>
+</p><h2>Opis</h2><p>
+<strong><br>		Przeciwnik imp kamikaze<br>	</strong>
+</p><div class="description">
+<br>		przeciwnik wbiega w gracza i wybucha zadając obrażenia i ginąc<br>	
+</div><h2>Zmienne i w&#322;a&#347;ciwo&#347;ci</h2><h3>save_id</h3>
+
+<div class="signature">
+save_id: String = &quot;&quot;
+</div>
+
+<div class="description">
+<br>			id przeciwnika do zapisu po śmierci<br>		
+</div><h3>max_hp</h3>
+
+<div class="signature">
+max_hp: int = 15
+</div>
+
+<div class="description">
+<br>			maksymalne hp<br>		
+</div><h3>speed</h3>
+
+<div class="signature">
+speed: float = 180.0
+</div>
+
+<div class="description">
+<br>			szybkość poruszania się<br>		
+</div><h3>contact_damage</h3>
+
+<div class="signature">
+contact_damage: int = 25
+</div>
+
+<div class="description">
+<br>			obrażenia zadawane przy wybuchu<br>		
+</div><h3>sprite</h3>
+
+<div class="signature">
+sprite: AnimatedSprite2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do animacji<br>		
+</div><h3>body_collision</h3>
+
+<div class="signature">
+body_collision: CollisionShape2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do ciała impa<br>		
+</div><h3>player_detector</h3>
+
+<div class="signature">
+player_detector: Area2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do obszaru wykrywania gracza<br>		
+</div><h3>player_detector_collision</h3>
+
+<div class="signature">
+player_detector_collision: CollisionShape2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			##referencja do obszaru w kt&#243;rym imp wybucha po odnalezieniu gracza<br>		
+</div><h3>damage_area</h3>
+
+<div class="signature">
+damage_area: Area2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do obszaru w kt&#243;rym zadaje obrażenia przy wybuchu<br>		
+</div><h3>damage_collision</h3>
+
+<div class="signature">
+damage_collision: CollisionShape2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do obszaru w kt&#243;rym imp zadaje dmg<br>		
+</div><h3>hurtbox</h3>
+
+<div class="signature">
+hurtbox: Area2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			hitbox impa<br>		
+</div><h3>hurtbox_collision</h3>
+
+<div class="signature">
+hurtbox_collision: CollisionShape2D = &lt;unknown&gt;
+</div>
+
+<div class="description">
+<br>			referencja do obszaru hitboxu impa<br>		
+</div><h3>hp</h3>
+
+<div class="signature">
+hp: int
+</div>
+
+<div class="description">
+<br>			obecne hp<br>		
+</div><h3>player</h3>
+
+<div class="signature">
+player: Node2D = null
+</div>
+
+<div class="description">
+<br>			pole pomocnicze do por&#243;wnania z graczem<br>		
+</div><h3>facing_direction</h3>
+
+<div class="signature">
+facing_direction: int = 1
+</div>
+
+<div class="description">
+<br>			kierunek ruchu<br>		
+</div><h3>is_dead</h3>
+
+<div class="signature">
+is_dead: bool = false
+</div>
+
+<div class="description">
+<br>			pole pomocnicze do sprawdzenia czy żyje<br>		
+</div><h3>is_hurt</h3>
+
+<div class="signature">
+is_hurt: bool = false
+</div>
+
+<div class="description">
+<br>			pole pomocnicze do sprawdzenia czy właśnie otrzymuje obrażenia<br>		
+</div><h3>has_exploded</h3>
+
+<div class="signature">
+has_exploded: bool = false
+</div>
+
+<div class="description">
+<br>			pole pomocnicze do sprawdzenia czy wybuchł<br>		
+</div><h3>hurt_generation</h3>
+
+<div class="signature">
+hurt_generation: int = 0
+</div>
+
+<div class="description">
+<br>			pole pomocnicze do powrotu do poprzedniej czynności po otrzymaniu dmg<br>		
+</div><h2>Metody</h2><h3>_ready</h3>
+
+<div class="signature">
+_ready() -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>_physics_process</h3>
+
+<div class="signature">
+_physics_process(delta: float) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>_on_player_detector_body_entered</h3>
+
+<div class="signature">
+_on_player_detector_body_entered(body: Node2D) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>_on_player_detector_body_exited</h3>
+
+<div class="signature">
+_on_player_detector_body_exited(body: Node2D) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>update_facing</h3>
+
+<div class="signature">
+update_facing() -&gt; void
+</div>
+
+<div class="description">
+<br>				obracanie impa<br>			
+</div><h3>_on_damage_area_body_entered</h3>
+
+<div class="signature">
+_on_damage_area_body_entered(body: Node2D) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>check_player_collision</h3>
+
+<div class="signature">
+check_player_collision() -&gt; void
+</div>
+
+<div class="description">
+<br>				sprawdza czy może wybuchnąć na graczu<br>			
+</div><h3>explode_on_player</h3>
+
+<div class="signature">
+explode_on_player(body: Node2D) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>take_damage</h3>
+
+<div class="signature">
+take_damage(damage: int) -&gt; void
+</div>
+
+<div class="description">
+<em>Brak opisu.</em>
+</div><h3>die</h3>
+
+<div class="signature">
+die() -&gt; void
+</div>
+
+<div class="description">
+<br>				umieranko<br>			
+</div><h3>disable_collisions</h3>
+
+<div class="signature">
+disable_collisions() -&gt; void
+</div>
+
+<div class="description">
+<br>				usuń kolizje po śnierci<br>			
+</div><footer>
+Dokumentacja wygenerowana na podstawie XML utworzonego
+przez Godot DocTool.
+</footer>
+
 </body>
 </html>

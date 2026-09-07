@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="save_manager" inherits="Node" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Klasa save_manager
+	</brief_description>
+	<description>
+		zarząda procesem zapisu i wczytywania gry
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+		<method name="create_default_profile">
+			<return type="Dictionary" />
+			<description>
+				stwórz podstawowy profil gracza
+			</description>
+		</method>
+		<method name="create_default_playthrough">
+			<return type="Dictionary" />
+			<description>
+				stwórz profil gracza do rozgrywki
+			</description>
+		</method>
+		<method name="reset_runtime_data">
+			<return type="void" />
+			<description>
+				usuń profil i zapisane detale rozgrywki
+			</description>
+		</method>
+		<method name="create_new_game">
+			<return type="void" />
+			<description>
+				zresetuj zapisane pliki i stwórz nowe pod nową rozgrywkę
+			</description>
+		</method>
+		<method name="get_coins">
+			<return type="int" />
+			<description>
+				sprawdż zapisaną ilosć monet
+			</description>
+		</method>
+		<method name="add_coins">
+			<return type="void" />
+			<param index="0" name="amount" type="int" />
+			<description>
+				dodaj monety do profilu  gracza
+			</description>
+		</method>
+		<method name="spend_coins">
+			<return type="bool" />
+			<param index="0" name="amount" type="int" />
+			<description>
+				wydaj monety na ulepszenia
+			</description>
+		</method>
+		<method name="get_damage_level">
+			<return type="int" />
+			<description>
+				zwróć level ulepszenia dmg
+			</description>
+		</method>
+		<method name="get_damage_bonus">
+			<return type="int" />
+			<description>
+				dodaj bonusowy dmg z ulepszeń
+			</description>
+		</method>
+		<method name="get_damage_upgrade_cost">
+			<return type="int" />
+			<description>
+				zmień koszt następnego poziomu ulepszenia
+			</description>
+		</method>
+		<method name="buy_damage_upgrade">
+			<return type="bool" />
+			<description>
+				kup ulepszenie dmg
+			</description>
+		</method>
+		<method name="get_playthrough_damage_bonus">
+			<return type="int" />
+			<description>
+				sprawdź jaki jest dodatkowy dmg z powerupów
+			</description>
+		</method>
+		<method name="add_playthrough_damage_bonus">
+			<return type="void" />
+			<param index="0" name="amount" type="int" />
+			<description>
+				dodaj dmg z powerupu
+			</description>
+		</method>
+		<method name="get_max_hp_level">
+			<return type="int" />
+			<description>
+				zwróć level ulepszenia hp
+			</description>
+		</method>
+		<method name="get_max_hp">
+			<return type="int" />
+			<description>
+				zwróć maksymalne hp po ulepszeniach
+			</description>
+		</method>
+		<method name="get_max_hp_upgrade_cost">
+			<return type="int" />
+			<description>
+				sprawdź koszt następnego levelupu dla hp
+			</description>
+		</method>
+		<method name="buy_max_hp_upgrade">
+			<return type="bool" />
+			<description>
+				kup nowy level ulepszenia hp
+			</description>
+		</method>
+		<method name="start_new_playthrough">
+			<return type="void" />
+			<description>
+				restartuje aktualną rozgrywkę, ulepszenia i monety zostają
+			</description>
+		</method>
+		<method name="has_current_playthrough">
+			<return type="bool" />
+			<description>
+				sprawdza czy jest zapisana rogrywka
+			</description>
+		</method>
+		<method name="get_playthrough_scene_path">
+			<return type="String" />
+			<description>
+				zwraca ścieżkę do sceny z playthrough_data
+			</description>
+		</method>
+		<method name="get_current_level_path">
+			<return type="String" />
+			<description>
+				zwraca ścieżkę do teraźniejszego poziomu
+			</description>
+		</method>
+		<method name="mark_enemy_defeated">
+			<return type="void" />
+			<param index="0" name="enemy_id" type="String" />
+			<description>
+				zapisz wrogów jako pokonanych
+			</description>
+		</method>
+		<method name="is_enemy_defeated">
+			<return type="bool" />
+			<param index="0" name="enemy_id" type="String" />
+			<description>
+				sprawdź czy przeciwnik jest pokonany
+			</description>
+		</method>
+		<method name="mark_pickup_collected">
+			<return type="void" />
+			<param index="0" name="pickup_id" type="String" />
+			<description>
+				zapisz pickupy jako zebrane
+			</description>
+		</method>
+		<method name="is_pickup_collected">
+			<return type="bool" />
+			<param index="0" name="pickup_id" type="String" />
+			<description>
+				sprawdź czy pickup jest zebrany
+			</description>
+		</method>
+		<method name="capture_current_playthrough">
+			<return type="bool" />
+			<description>
+				zapisz teraźniejszą rozgrywkę
+			</description>
+		</method>
+		<method name="restore_current_playthrough_player">
+			<return type="void" />
+			<description>
+				wczytaj zapisaną rozgrywkę
+			</description>
+		</method>
+		<method name="capture_player_transition_state">
+			<return type="bool" />
+			<description>
+				zapisz w jakim stanie jest postać gracza
+			</description>
+		</method>
+		<method name="restore_player_transition_state">
+			<return type="void" />
+			<description>
+				wczytaj zapisaną postać gracza
+			</description>
+		</method>
+		<method name="save_all">
+			<return type="void" />
+			<description>
+				zapisz wszytkie informacje
+			</description>
+		</method>
+		<method name="ensure_save_directory">
+			<return type="int" enum="Error" />
+			<description>
+				upewnij się że jest gdzie zapisać
+			</description>
+		</method>
+		<method name="load_from_disk">
+			<return type="bool" />
+			<description>
+				wczytaj z dysku
+			</description>
+		</method>
+		<method name="has_save">
+			<return type="bool" />
+			<description>
+				sprawdź czy już jest zapis
+			</description>
+		</method>
+		<method name="delete_save">
+			<return type="void" />
+			<description>
+				usuń zapis
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="profile_data" type="Dictionary" setter="" getter="" default="{}">
+			pola do zapisu profilu gracza
+		</member>
+		<member name="playthrough_data" type="Dictionary" setter="" getter="" default="{}">
+			pola do zapisu rozgrywki
+		</member>
+		<member name="active_scene_path" type="String" setter="" getter="" default="&quot;&quot;">
+			ścieżka do aktualnego poziomu
+		</member>
+		<member name="transition_player_state" type="Dictionary" setter="" getter="" default="{}">
+			Tymczasowy stan gracza używany podczas przejścia np. level_01 -&gt; level_02 itd.
+		</member>
+	</members>
+	<signals>
+		<signal name="coins_changed">
+			<param index="0" name="new_amount" type="int" />
+			<description>
+			</description>
+		</signal>
+		<signal name="upgrades_changed">
+			<description>
+			</description>
+		</signal>
+	</signals>
+	<constants>
+		<constant name="SAVE_DIR" value="&quot;user://saved_games&quot;">
+			ścieżka katalogu z zapisami gry
+		</constant>
+		<constant name="SAVE_PATH" value="&quot;user://saved_games/savegame.json&quot;">
+			ścieżka do zapisu gry
+		</constant>
+		<constant name="DAMAGE_PER_LEVEL" value="2">
+			dodatkowe zadawane obrażenia za poziom ulepszenia
+		</constant>
+		<constant name="DAMAGE_UPGRADE_BASE_COST" value="10">
+			dodatkowy koszt za każdy poziom ulepszenia dmg
+		</constant>
+		<constant name="BASE_MAX_HP" value="100">
+			początkowa wartość maksymalnego hp
+		</constant>
+		<constant name="MAX_HP_PER_LEVEL" value="20">
+			dodatkowe punkty życia za poziom ulepszenia
+		</constant>
+		<constant name="MAX_HP_UPGRADE_BASE_COST" value="20">
+			dodatkowy koszt za każdy poziom ulepszenia hp
+		</constant>
+	</constants>
+</class>

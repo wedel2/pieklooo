@@ -1,45 +1,171 @@
-$XmlFolder = Join-Path $PSScriptRoot "documentation\xml"
-$HtmlFolder = Join-Path $PSScriptRoot "docs"
+# ============================================================
+# Godot 4 - XML documentation -> HTML
+# Windows PowerShell 5.1 compatible
+# ============================================================
 
-if (-not (Test-Path $XmlFolder)) {
-    Write-Host "Nie znaleziono folderu: $XmlFolder" -ForegroundColor Red
-    exit
+$ProjectDir = $PSScriptRoot
+$XmlDir = Join-Path $ProjectDir "documentation\xml"
+$DocsDir = Join-Path $ProjectDir "docs"
+$DocsXmlDir = Join-Path $DocsDir "xml"
+
+$Utf8 = New-Object System.Text.UTF8Encoding($false)
+
+# ------------------------------------------------------------
+# Helper functions
+# ------------------------------------------------------------
+
+function SaveUtf8 {
+    param(
+        [string]$Path,
+        [string]$Content
+    )
+
+    [System.IO.File]::WriteAllText(
+        $Path,
+        $Content,
+        $Utf8
+    )
 }
 
-if (-not (Test-Path $HtmlFolder)) {
-    New-Item -ItemType Directory -Path $HtmlFolder | Out-Null
+
+function HtmlEncode {
+    param(
+        [AllowNull()]
+        [string]$Text
+    )
+
+    if ($null -eq $Text) {
+        return ""
+    }
+
+    return [System.Net.WebUtility]::HtmlEncode($Text)
 }
 
-function Encode-Html {
-    param([string]$Text)
+
+function GetNodeText {
+    param($Node)
+
+    if ($null -eq $Node) {
+        return ""
+    }
+
+    return [string]$Node.InnerText
+}
+
+
+function FormatDocText {
+    param(
+        [AllowNull()]
+        [string]$Text
+    )
 
     if ([string]::IsNullOrWhiteSpace($Text)) {
         return "<em>Brak opisu.</em>"
     }
 
-    $result = [System.Net.WebUtility]::HtmlEncode($Text)
+    $Result = [System.Net.WebUtility]::HtmlEncode($Text)
 
-    # Podstawowa obsługa znaczników dokumentacji Godota.
-    $result = $result -replace '\[b\](.*?)\[/b\]', '<strong>$1</strong>'
-    $result = $result -replace '\[i\](.*?)\[/i\]', '<em>$1</em>'
-    $result = $result -replace '\[code\](.*?)\[/code\]', '<code>$1</code>'
-    $result = $result -replace '\[br\]', '<br>'
+    # Godot BBCode-like documentation tags
+    $Result = $Result -replace '\[b\](.*?)\[/b\]', '<strong>$1</strong>'
+    $Result = $Result -replace '\[i\](.*?)\[/i\]', '<em>$1</em>'
+    $Result = $Result -replace '\[code\](.*?)\[/code\]', '<code>$1</code>'
+    $Result = $Result -replace '\[kbd\](.*?)\[/kbd\]', '<code>$1</code>'
 
-    $result = $result -replace "`r`n", "<br>"
-    $result = $result -replace "`n", "<br>"
+    $Result = $Result -replace '\[param ([^\]]+)\]', '<code>$1</code>'
+    $Result = $Result -replace '\[method ([^\]]+)\]', '<code>$1</code>'
+    $Result = $Result -replace '\[member ([^\]]+)\]', '<code>$1</code>'
+    $Result = $Result -replace '\[signal ([^\]]+)\]', '<code>$1</code>'
+    $Result = $Result -replace '\[constant ([^\]]+)\]', '<code>$1</code>'
+    $Result = $Result -replace '\[enum ([^\]]+)\]', '<code>$1</code>'
 
-    return $result
+    $Result = $Result -replace '\[br\]', '<br>'
+
+    $Result = $Result.Replace("`r`n", "<br>")
+    $Result = $Result.Replace("`n", "<br>")
+
+    return $Result
 }
 
-$Style = @"
+
+function GetAttr {
+    param(
+        $Node,
+        [string]$Name
+    )
+
+    if ($null -eq $Node) {
+        return ""
+    }
+
+    return [string]$Node.GetAttribute($Name)
+}
+
+
+# ------------------------------------------------------------
+# Input check
+# ------------------------------------------------------------
+
+if (-not (Test-Path $XmlDir)) {
+    Write-Host "ERROR: XML folder not found:" -ForegroundColor Red
+    Write-Host $XmlDir
+    exit 1
+}
+
+$XmlFiles = @(
+    Get-ChildItem `
+        -Path $XmlDir `
+        -Filter "*.xml" `
+        -File |
+    Sort-Object Name
+)
+
+if ($XmlFiles.Count -eq 0) {
+    Write-Host "ERROR: No XML files found." -ForegroundColor Red
+    exit 1
+}
+
+
+# ------------------------------------------------------------
+# Recreate docs directory
+# ------------------------------------------------------------
+
+if (Test-Path $DocsDir) {
+    Remove-Item `
+        -Path $DocsDir `
+        -Recurse `
+        -Force
+}
+
+New-Item `
+    -ItemType Directory `
+    -Path $DocsDir |
+Out-Null
+
+New-Item `
+    -ItemType Directory `
+    -Path $DocsXmlDir |
+Out-Null
+
+
+# ------------------------------------------------------------
+# CSS
+# ------------------------------------------------------------
+
+$Css = @"
 <style>
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 25px;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 35px;
     line-height: 1.6;
     color: #222;
+    background: #fff;
 }
 
 h1 {
@@ -48,16 +174,18 @@ h1 {
 }
 
 h2 {
-    margin-top: 35px;
+    margin-top: 40px;
     border-bottom: 1px solid #bbb;
     padding-bottom: 6px;
 }
 
 h3 {
-    margin-top: 25px;
+    margin-top: 26px;
+    margin-bottom: 8px;
 }
 
 a {
+    color: #1d5fa7;
     text-decoration: none;
 }
 
@@ -66,17 +194,19 @@ a:hover {
 }
 
 code {
-    background: #eeeeee;
-    padding: 2px 5px;
+    font-family: Consolas, "Courier New", monospace;
+    background: #eee;
+    padding: 2px 6px;
     border-radius: 4px;
 }
 
 .signature {
+    font-family: Consolas, "Courier New", monospace;
     background: #f3f3f3;
     border-left: 4px solid #555;
-    padding: 10px;
-    font-family: Consolas, monospace;
-    margin-bottom: 10px;
+    padding: 10px 14px;
+    margin: 8px 0 12px 0;
+    overflow-wrap: anywhere;
 }
 
 .description {
@@ -87,301 +217,733 @@ code {
     color: #666;
 }
 
-.class-list li {
-    margin-bottom: 8px;
+.back {
+    margin-bottom: 25px;
 }
+
+.class-list li {
+    margin-bottom: 9px;
+}
+
+.info {
+    background: #f3f6f9;
+    border-left: 4px solid #4d718e;
+    padding: 12px 15px;
+    margin: 20px 0;
+}
+
+.xml-link {
+    margin-top: 15px;
+}
+
+footer {
+    margin-top: 60px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+    color: #777;
+    font-size: 0.9em;
+}
+
 </style>
 "@
 
+
+# ------------------------------------------------------------
+# Start
+# ------------------------------------------------------------
+
+Write-Host ""
+Write-Host "============================================"
+Write-Host "Godot XML -> HTML"
+Write-Host "============================================"
+Write-Host "XML files found: $($XmlFiles.Count)"
+Write-Host ""
+
+
 $Classes = @()
 
-$XmlFiles = Get-ChildItem -Path $XmlFolder -Filter "*.xml" |
-    Sort-Object Name
 
 foreach ($File in $XmlFiles) {
 
+    Write-Host "Processing: $($File.Name)"
+
+    # Copy original XML to GitHub Pages directory
+    Copy-Item `
+        -Path $File.FullName `
+        -Destination $DocsXmlDir `
+        -Force
+
     try {
         $Xml = New-Object System.Xml.XmlDocument
-        $Xml.PreserveWhitespace = $true
+        $Xml.PreserveWhitespace = $false
+
+        # Reads encoding from the XML declaration
         $Xml.Load($File.FullName)
     }
     catch {
-        Write-Host "Błąd XML: $($File.Name)" -ForegroundColor Red
+        Write-Host "  ERROR: Cannot read XML." -ForegroundColor Red
+        Write-Host "  $($_.Exception.Message)"
         continue
     }
 
-    $Class = $Xml.class
+
+    # --------------------------------------------------------
+    # IMPORTANT:
+    # Find <class> regardless of namespace or wrapper.
+    # --------------------------------------------------------
+
+    $Class = $Xml.SelectSingleNode(
+        "//*[local-name()='class']"
+    )
 
     if ($null -eq $Class) {
-        Write-Host "Pominięto: $($File.Name)" -ForegroundColor Yellow
+
+        Write-Host `
+            "  ERROR: No <class> element found." `
+            -ForegroundColor Red
+
+        Write-Host `
+            "  Root element: $($Xml.DocumentElement.Name)" `
+            -ForegroundColor Yellow
+
         continue
     }
 
-    $ClassName = [string]$Class.name
-    $Inherits = [string]$Class.inherits
+
+    # --------------------------------------------------------
+    # Class information
+    # --------------------------------------------------------
+
+    $ClassName = GetAttr $Class "name"
 
     if ([string]::IsNullOrWhiteSpace($ClassName)) {
         $ClassName = $File.BaseName
     }
 
-    $OutputFileName = $File.BaseName + ".html"
-    $OutputPath = Join-Path $HtmlFolder $OutputFileName
+    $Inherits = GetAttr $Class "inherits"
+    $Version = GetAttr $Class "version"
+
+    $SafeClassName = HtmlEncode $ClassName
+    $SafeInherits = HtmlEncode $Inherits
+    $SafeVersion = HtmlEncode $Version
+
+    $HtmlFileName = $File.BaseName + ".html"
+    $HtmlPath = Join-Path $DocsDir $HtmlFileName
+
+    $XmlLinkName =
+        [System.Uri]::EscapeDataString($File.Name)
+
+
+    # --------------------------------------------------------
+    # Page header
+    # --------------------------------------------------------
 
     $Html = @"
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>$ClassName - dokumentacja</title>
-$Style
+
+<title>$SafeClassName - dokumentacja</title>
+
+$Css
 </head>
 
 <body>
 
-<p><a href="index.html">← Powrót do strony głównej</a></p>
+<div class="back">
+<a href="index.html">
+&larr; Powr&#243;t do listy klas
+</a>
+</div>
 
-<h1>$ClassName</h1>
+<h1>$SafeClassName</h1>
 "@
 
-    if (-not [string]::IsNullOrWhiteSpace($Inherits)) {
-        $EncodedInherits = [System.Net.WebUtility]::HtmlEncode($Inherits)
 
+    if (-not [string]::IsNullOrWhiteSpace($Inherits)) {
         $Html += @"
 <p class="meta">
-Dziedziczy po: <code>$EncodedInherits</code>
+Dziedziczy po: <code>$SafeInherits</code>
 </p>
 "@
     }
 
-    $Brief = [string]$Class.brief_description
-    $Description = [string]$Class.description
+
+    if (-not [string]::IsNullOrWhiteSpace($Version)) {
+        $Html += @"
+<p class="meta">
+Wersja Godot: $SafeVersion
+</p>
+"@
+    }
+
+
+    $Html += @"
+<p class="xml-link">
+<a href="xml/$XmlLinkName">
+Poka&#380; oryginalny XML wygenerowany przez Godot
+</a>
+</p>
+"@
+
+
+    # --------------------------------------------------------
+    # Description
+    # --------------------------------------------------------
+
+    $BriefNode = $Class.SelectSingleNode(
+        "./*[local-name()='brief_description']"
+    )
+
+    $DescriptionNode = $Class.SelectSingleNode(
+        "./*[local-name()='description']"
+    )
+
+    $Brief = GetNodeText $BriefNode
+    $Description = GetNodeText $DescriptionNode
+
 
     $Html += "<h2>Opis</h2>"
 
+
     if (-not [string]::IsNullOrWhiteSpace($Brief)) {
-        $Html += "<p><strong>$(Encode-Html $Brief)</strong></p>"
+        $Html += @"
+<p>
+<strong>$(FormatDocText $Brief)</strong>
+</p>
+"@
     }
 
-    $Html += "<p class='description'>$(Encode-Html $Description)</p>"
 
-    # SYGNAŁY
-    if ($null -ne $Class.signals.signal) {
+    $Html += @"
+<div class="description">
+$(FormatDocText $Description)
+</div>
+"@
 
-        $Html += "<h2>Sygnały</h2>"
 
-        foreach ($Signal in $Class.signals.signal) {
+    # --------------------------------------------------------
+    # Signals
+    # --------------------------------------------------------
 
-            $SignalName = [string]$Signal.name
-            $Html += "<h3>$SignalName</h3>"
+    $Signals = @(
+        $Class.SelectNodes(
+            "./*[local-name()='signals']/*[local-name()='signal']"
+        )
+    )
+
+
+    if ($Signals.Count -gt 0) {
+
+        $Html += "<h2>Sygna&#322;y</h2>"
+
+        foreach ($Signal in $Signals) {
+
+            $SignalName = GetAttr $Signal "name"
+            $SafeSignalName = HtmlEncode $SignalName
 
             $Parameters = @()
 
-            foreach ($Param in $Signal.param) {
-                $PName = [string]$Param.name
-                $PType = [string]$Param.type
+            $SignalParams = @(
+                $Signal.SelectNodes(
+                    "./*[local-name()='param']"
+                )
+            )
 
-                if ([string]::IsNullOrWhiteSpace($PType)) {
-                    $PType = "Variant"
+            foreach ($Param in $SignalParams) {
+
+                $ParamName = GetAttr $Param "name"
+                $ParamType = GetAttr $Param "type"
+
+                if ([string]::IsNullOrWhiteSpace($ParamType)) {
+                    $ParamType = "Variant"
                 }
 
-                $Parameters += "$PName`: $PType"
+                $Parameters += "$ParamName`: $ParamType"
             }
 
-            $Signature = "$SignalName(" + ($Parameters -join ", ") + ")"
+            $Signature =
+                $SignalName +
+                "(" +
+                ($Parameters -join ", ") +
+                ")"
 
-            $Html += "<div class='signature'>$Signature</div>"
+            $SafeSignature = HtmlEncode $Signature
 
-            $SignalDescription = [string]$Signal.description
+            $SignalDescriptionNode =
+                $Signal.SelectSingleNode(
+                    "./*[local-name()='description']"
+                )
 
-            $Html += "<p class='description'>$(Encode-Html $SignalDescription)</p>"
+            $SignalDescription =
+                GetNodeText $SignalDescriptionNode
+
+
+            $Html += @"
+<h3>$SafeSignalName</h3>
+
+<div class="signature">
+$SafeSignature
+</div>
+
+<div class="description">
+$(FormatDocText $SignalDescription)
+</div>
+"@
         }
     }
 
-    # ZMIENNE
-    if ($null -ne $Class.members.member) {
 
-        $Html += "<h2>Zmienne i właściwości</h2>"
+    # --------------------------------------------------------
+    # Members / variables
+    # --------------------------------------------------------
 
-        foreach ($Member in $Class.members.member) {
+    $Members = @(
+        $Class.SelectNodes(
+            "./*[local-name()='members']/*[local-name()='member']"
+        )
+    )
 
-            $MemberName = [string]$Member.name
-            $MemberType = [string]$Member.type
-            $Default = [string]$Member.default
+
+    if ($Members.Count -gt 0) {
+
+        $Html += `
+            "<h2>Zmienne i w&#322;a&#347;ciwo&#347;ci</h2>"
+
+        foreach ($Member in $Members) {
+
+            $MemberName = GetAttr $Member "name"
+            $MemberType = GetAttr $Member "type"
+            $DefaultValue = GetAttr $Member "default"
 
             if ([string]::IsNullOrWhiteSpace($MemberType)) {
                 $MemberType = "Variant"
             }
 
-            $Html += "<h3>$MemberName</h3>"
+            $Signature =
+                "$MemberName`: $MemberType"
 
-            $Signature = "$MemberName`: $MemberType"
-
-            if (-not [string]::IsNullOrWhiteSpace($Default)) {
-                $Signature += " = $Default"
+            if (
+                -not [string]::IsNullOrWhiteSpace(
+                    $DefaultValue
+                )
+            ) {
+                $Signature += " = $DefaultValue"
             }
 
-            $Html += "<div class='signature'>$Signature</div>"
+            $SafeMemberName = HtmlEncode $MemberName
+            $SafeSignature = HtmlEncode $Signature
 
-            $MemberDescription = [string]$Member.InnerText
+            $MemberDescription =
+                GetNodeText $Member
 
-            $Html += "<p class='description'>$(Encode-Html $MemberDescription)</p>"
+
+            $Html += @"
+<h3>$SafeMemberName</h3>
+
+<div class="signature">
+$SafeSignature
+</div>
+
+<div class="description">
+$(FormatDocText $MemberDescription)
+</div>
+"@
         }
     }
 
-    # STAŁE I ENUMY
-    if ($null -ne $Class.constants.constant) {
 
-        $Html += "<h2>Stałe i wartości enum</h2>"
+    # --------------------------------------------------------
+    # Constants and enums
+    # --------------------------------------------------------
 
-        foreach ($Constant in $Class.constants.constant) {
+    $Constants = @(
+        $Class.SelectNodes(
+            "./*[local-name()='constants']/*[local-name()='constant']"
+        )
+    )
 
-            $ConstantName = [string]$Constant.name
-            $ConstantValue = [string]$Constant.value
-            $EnumName = [string]$Constant.enum
+    $NormalConstants = @()
+    $EnumGroups = @{}
 
-            $Html += "<h3>$ConstantName</h3>"
 
-            if (-not [string]::IsNullOrWhiteSpace($EnumName)) {
-                $Html += "<p class='meta'>Enum: <code>$EnumName</code></p>"
+    foreach ($Constant in $Constants) {
+
+        $EnumName = GetAttr $Constant "enum"
+
+        if ([string]::IsNullOrWhiteSpace($EnumName)) {
+            $NormalConstants += $Constant
+        }
+        else {
+
+            if (-not $EnumGroups.ContainsKey($EnumName)) {
+                $EnumGroups[$EnumName] = @()
             }
 
-            $Html += "<div class='signature'>$ConstantName = $ConstantValue</div>"
-
-            $ConstantDescription = [string]$Constant.InnerText
-
-            $Html += "<p class='description'>$(Encode-Html $ConstantDescription)</p>"
+            $EnumGroups[$EnumName] += $Constant
         }
     }
 
-    # METODY
-    if ($null -ne $Class.methods.method) {
+
+    if ($NormalConstants.Count -gt 0) {
+
+        $Html += "<h2>Sta&#322;e</h2>"
+
+        foreach ($Constant in $NormalConstants) {
+
+            $ConstantName = GetAttr $Constant "name"
+            $ConstantValue = GetAttr $Constant "value"
+
+            $Signature =
+                "$ConstantName = $ConstantValue"
+
+            $SafeConstantName =
+                HtmlEncode $ConstantName
+
+            $SafeSignature =
+                HtmlEncode $Signature
+
+            $ConstantDescription =
+                GetNodeText $Constant
+
+
+            $Html += @"
+<h3>$SafeConstantName</h3>
+
+<div class="signature">
+$SafeSignature
+</div>
+
+<div class="description">
+$(FormatDocText $ConstantDescription)
+</div>
+"@
+        }
+    }
+
+
+    if ($EnumGroups.Count -gt 0) {
+
+        $Html += "<h2>Typy wyliczeniowe (enum)</h2>"
+
+        foreach (
+            $EnumName in (
+                $EnumGroups.Keys |
+                Sort-Object
+            )
+        ) {
+
+            $SafeEnumName =
+                HtmlEncode $EnumName
+
+            $Html += "<h3>$SafeEnumName</h3>"
+            $Html += "<ul>"
+
+            foreach (
+                $Constant in $EnumGroups[$EnumName]
+            ) {
+
+                $ConstantName =
+                    GetAttr $Constant "name"
+
+                $ConstantValue =
+                    GetAttr $Constant "value"
+
+                $SafeConstantName =
+                    HtmlEncode $ConstantName
+
+                $SafeConstantValue =
+                    HtmlEncode $ConstantValue
+
+                $ConstantDescription =
+                    GetNodeText $Constant
+
+
+                $Html += @"
+<li>
+<code>$SafeConstantName = $SafeConstantValue</code>
+"@
+
+
+                if (
+                    -not [string]::IsNullOrWhiteSpace(
+                        $ConstantDescription
+                    )
+                ) {
+                    $Html += `
+                        " - $(FormatDocText $ConstantDescription)"
+                }
+
+                $Html += "</li>"
+            }
+
+            $Html += "</ul>"
+        }
+    }
+
+
+    # --------------------------------------------------------
+    # Methods
+    # --------------------------------------------------------
+
+    $Methods = @(
+        $Class.SelectNodes(
+            "./*[local-name()='methods']/*[local-name()='method']"
+        )
+    )
+
+
+    if ($Methods.Count -gt 0) {
 
         $Html += "<h2>Metody</h2>"
 
-        foreach ($Method in $Class.methods.method) {
+        foreach ($Method in $Methods) {
 
-            $MethodName = [string]$Method.name
+            $MethodName =
+                GetAttr $Method "name"
 
-            $Html += "<h3>$MethodName</h3>"
+            $SafeMethodName =
+                HtmlEncode $MethodName
 
             $Parameters = @()
 
-            foreach ($Param in $Method.param) {
+            $MethodParams = @(
+                $Method.SelectNodes(
+                    "./*[local-name()='param']"
+                )
+            )
 
-                $PName = [string]$Param.name
-                $PType = [string]$Param.type
-                $PDefault = [string]$Param.default
 
-                if ([string]::IsNullOrWhiteSpace($PType)) {
-                    $PType = "Variant"
+            $SortedParams = @(
+                $MethodParams |
+                Sort-Object {
+
+                    $IndexText =
+                        GetAttr $_ "index"
+
+                    if (
+                        [string]::IsNullOrWhiteSpace(
+                            $IndexText
+                        )
+                    ) {
+                        return 999
+                    }
+
+                    return [int]$IndexText
+                }
+            )
+
+
+            foreach ($Param in $SortedParams) {
+
+                $ParamName =
+                    GetAttr $Param "name"
+
+                $ParamType =
+                    GetAttr $Param "type"
+
+                $ParamDefault =
+                    GetAttr $Param "default"
+
+                if (
+                    [string]::IsNullOrWhiteSpace(
+                        $ParamType
+                    )
+                ) {
+                    $ParamType = "Variant"
                 }
 
-                $ParameterText = "$PName`: $PType"
+                $ParameterText =
+                    "$ParamName`: $ParamType"
 
-                if (-not [string]::IsNullOrWhiteSpace($PDefault)) {
-                    $ParameterText += " = $PDefault"
+                if (
+                    -not [string]::IsNullOrWhiteSpace(
+                        $ParamDefault
+                    )
+                ) {
+                    $ParameterText += `
+                        " = $ParamDefault"
                 }
 
                 $Parameters += $ParameterText
             }
 
+
             $ReturnType = "void"
 
-            if ($null -ne $Method.return) {
-                $TempReturn = [string]$Method.return.type
+            $ReturnNode =
+                $Method.SelectSingleNode(
+                    "./*[local-name()='return']"
+                )
 
-                if (-not [string]::IsNullOrWhiteSpace($TempReturn)) {
+            if ($null -ne $ReturnNode) {
+
+                $TempReturn =
+                    GetAttr $ReturnNode "type"
+
+                if (
+                    -not [string]::IsNullOrWhiteSpace(
+                        $TempReturn
+                    )
+                ) {
                     $ReturnType = $TempReturn
                 }
             }
 
+
             $Signature =
-                "$MethodName(" +
+                $MethodName +
+                "(" +
                 ($Parameters -join ", ") +
-                ") -> $ReturnType"
+                ") -> " +
+                $ReturnType
 
-            $EncodedSignature =
-                [System.Net.WebUtility]::HtmlEncode($Signature)
+            $SafeSignature =
+                HtmlEncode $Signature
 
-            $Html += "<div class='signature'>$EncodedSignature</div>"
 
-            $MethodDescription = [string]$Method.description
+            $MethodDescriptionNode =
+                $Method.SelectSingleNode(
+                    "./*[local-name()='description']"
+                )
 
-            $Html += "<p class='description'>$(Encode-Html $MethodDescription)</p>"
+            $MethodDescription =
+                GetNodeText $MethodDescriptionNode
+
+
+            $Html += @"
+<h3>$SafeMethodName</h3>
+
+<div class="signature">
+$SafeSignature
+</div>
+
+<div class="description">
+$(FormatDocText $MethodDescription)
+</div>
+"@
         }
     }
 
+
+    # --------------------------------------------------------
+    # Footer
+    # --------------------------------------------------------
+
     $Html += @"
+<footer>
+Dokumentacja wygenerowana na podstawie XML utworzonego
+przez Godot DocTool.
+</footer>
 
 </body>
 </html>
 "@
 
-    $Utf8 = New-Object System.Text.UTF8Encoding($false)
 
-    [System.IO.File]::WriteAllText(
-        $OutputPath,
-        $Html,
-        $Utf8
-    )
+    SaveUtf8 `
+        -Path $HtmlPath `
+        -Content $Html
+
 
     $Classes += [PSCustomObject]@{
-        Name = $ClassName
-        File = $OutputFileName
+        Name     = $ClassName
+        File     = $HtmlFileName
         Inherits = $Inherits
+        XmlFile  = $File.Name
     }
 
-    Write-Host "Utworzono: $OutputFileName" -ForegroundColor Green
+
+    Write-Host `
+        "  Created: $HtmlFileName" `
+        -ForegroundColor Green
 }
 
-# INDEX.HTML
+
+# ------------------------------------------------------------
+# Generate index.html
+# ------------------------------------------------------------
+
 $IndexItems = ""
 
-foreach ($Item in ($Classes | Sort-Object Name)) {
 
-    $Name = [System.Net.WebUtility]::HtmlEncode($Item.Name)
-    $FileName = [System.Net.WebUtility]::HtmlEncode($Item.File)
+foreach (
+    $Item in (
+        $Classes |
+        Sort-Object Name
+    )
+) {
 
-    $IndexItems += "<li><a href='$FileName'>$Name</a>"
+    $SafeName =
+        HtmlEncode $Item.Name
 
-    if (-not [string]::IsNullOrWhiteSpace($Item.Inherits)) {
-        $Parent =
-            [System.Net.WebUtility]::HtmlEncode($Item.Inherits)
+    $HtmlUrl =
+        [System.Uri]::EscapeDataString(
+            $Item.File
+        )
 
-        $IndexItems += " <span class='meta'>(extends $Parent)</span>"
+    $SafeParent =
+        HtmlEncode $Item.Inherits
+
+
+    $IndexItems += @"
+<li>
+<a href="$HtmlUrl">
+<strong>$SafeName</strong>
+</a>
+"@
+
+
+    if (
+        -not [string]::IsNullOrWhiteSpace(
+            $Item.Inherits
+        )
+    ) {
+
+        $IndexItems += @"
+<span class="meta">
+(extends $SafeParent)
+</span>
+"@
     }
+
 
     $IndexItems += "</li>"
 }
 
-$Count = $Classes.Count
+
+$ClassCount = $Classes.Count
+
 
 $IndexHtml = @"
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Dokumentacja kodu projektu</title>
 
-$Style
+$Css
 </head>
 
 <body>
 
 <h1>Dokumentacja kodu projektu</h1>
 
-<p>
-Dokumentacja została wygenerowana na podstawie dokumentacji XML
-utworzonej przez Godot DocTool z komentarzy dokumentacyjnych
-w kodzie GDScript.
-</p>
+<div class="info">
+Dokumentacja zosta&#322;a wygenerowana na podstawie komentarzy
+dokumentacyjnych GDScript. Godot DocTool wygenerowa&#322; dokumentacj&#281;
+XML, kt&#243;ra nast&#281;pnie zosta&#322;a przekszta&#322;cona do HTML.
+</div>
 
 <p>
-Liczba udokumentowanych klas/skryptów:
-<strong>$Count</strong>
+Liczba udokumentowanych klas/skrypt&#243;w:
+<strong>$ClassCount</strong>
 </p>
 
 <h2>Klasy i skrypty</h2>
@@ -390,27 +952,59 @@ Liczba udokumentowanych klas/skryptów:
 $IndexItems
 </ul>
 
+<h2>Oryginalna dokumentacja XML</h2>
+
+<p>
+Oryginalne pliki XML wygenerowane przez Godot s&#261;
+dost&#281;pne w katalogu
+<a href="xml/">xml</a>.
+</p>
+
+<footer>
+Dokumentacja projektu Godot 4.4.
+</footer>
+
 </body>
 </html>
 "@
 
-Set-Content `
-    -Path (Join-Path $HtmlFolder "index.html") `
-    -Value $IndexHtml `
-    -Encoding UTF8
 
-# Plik dla GitHub Pages
-Set-Content `
-    -Path (Join-Path $HtmlFolder ".nojekyll") `
-    -Value "" `
-    -Encoding UTF8
+$IndexPath =
+    Join-Path $DocsDir "index.html"
+
+
+SaveUtf8 `
+    -Path $IndexPath `
+    -Content $IndexHtml
+
+
+# ------------------------------------------------------------
+# GitHub Pages .nojekyll
+# ------------------------------------------------------------
+
+$NoJekyllPath =
+    Join-Path $DocsDir ".nojekyll"
+
+
+SaveUtf8 `
+    -Path $NoJekyllPath `
+    -Content ""
+
+
+# ------------------------------------------------------------
+# Summary
+# ------------------------------------------------------------
 
 Write-Host ""
 Write-Host "============================================"
-Write-Host "Gotowe." -ForegroundColor Green
-Write-Host "Dokumentacja HTML znajduje się w:"
-Write-Host $HtmlFolder
-Write-Host ""
-Write-Host "Otwórz:"
-Write-Host (Join-Path $HtmlFolder "index.html")
+Write-Host "DONE" -ForegroundColor Green
 Write-Host "============================================"
+Write-Host ""
+Write-Host "Generated class pages: $ClassCount"
+Write-Host ""
+Write-Host "Main page:"
+Write-Host $IndexPath -ForegroundColor Cyan
+Write-Host ""
+Write-Host "Open:"
+Write-Host "docs\index.html" -ForegroundColor Cyan
+Write-Host ""

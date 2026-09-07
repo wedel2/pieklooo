@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="Skeleton" inherits="Node2D" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/godotengine/godot/master/doc/class.xsd">
+	<brief_description>
+		Klasa skeleton
+	</brief_description>
+	<description>
+		Przeciwnik patrolujący teren i zadający obrażenia na krótkim dystansie
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="_ready">
+			<return type="void" />
+			<description>
+				funkcja nadaje wartość hp, zapisuje pozycję poziomą na której szkielet zaczyna, podłącza sygnał zmienianej klatki, oraz sprawdza czy nie był wcześniej pokonany przy wczytaniu
+			</description>
+		</method>
+		<method name="restore_dead_state">
+			<return type="void" />
+			<description>
+				funkcja przywraca szkielet do stanu pokonanego
+			</description>
+		</method>
+		<method name="_physics_process">
+			<return type="void" />
+			<param index="0" name="delta" type="float" />
+			<description>
+				Procesy fizyczne dla szkieletu
+			</description>
+		</method>
+		<method name="change_direction">
+			<return type="void" />
+			<param index="0" name="new_direction" type="int" />
+			<description>
+				zmiana kierunku szkieleta i wszystkich jego podzespołów
+			</description>
+		</method>
+		<method name="stop_and_turn">
+			<return type="void" />
+			<description>
+				funkcja do czekania na końcu patrolowanego obszaru
+			</description>
+		</method>
+		<method name="cancel_wait">
+			<return type="void" />
+			<description>
+				funkcja pomocnicza do stop_and_turn()
+			</description>
+		</method>
+		<method name="take_damage">
+			<return type="void" />
+			<param index="0" name="amount" type="int" />
+			<description>
+				otrzymywanie obrażeń
+			</description>
+		</method>
+		<method name="resume_behavior">
+			<return type="void" />
+			<description>
+				po otrzymanych obrażeniach wróć do poprzedniej czynności
+			</description>
+		</method>
+		<method name="die">
+			<return type="void" />
+			<description>
+				umieranko
+			</description>
+		</method>
+		<method name="_on_player_detector_body_entered">
+			<return type="void" />
+			<param index="0" name="body_entered" type="Node2D" />
+			<description>
+				rozpocznij atak gdy gracza wejdzie w strefę ataku
+			</description>
+		</method>
+		<method name="_on_player_detector_body_exited">
+			<return type="void" />
+			<param index="0" name="body_exited" type="Node2D" />
+			<description>
+				przestań rozpoczynać ataki gdy nie ma kogo atakować
+			</description>
+		</method>
+		<method name="attack">
+			<return type="void" />
+			<description>
+				atak
+			</description>
+		</method>
+		<method name="is_player_in_detector">
+			<return type="bool" />
+			<description>
+				sprawdź czy gracz jest w detektorze
+			</description>
+		</method>
+		<method name="_on_sprite_frame_changed">
+			<return type="void" />
+			<description>
+				funkcja do sprawdzania czy gracz jest na linii ataku w odpowiednich klatakch animacji ataku
+			</description>
+		</method>
+		<method name="check_attack_hit">
+			<return type="void" />
+			<description>
+			</description>
+		</method>
+	</methods>
+	<members>
+		<member name="save_id" type="String" setter="" getter="" default="&quot;&quot;">
+			zmienna do zapisu pokonanych przeciwników
+		</member>
+		<member name="speed" type="float" setter="" getter="" default="75.0">
+			szybkosc szkieletu
+		</member>
+		<member name="patrol_distance" type="float" setter="" getter="" default="250.0">
+			odleglosc jaka patroluje szkielet w obie strony od pkt spawnu
+		</member>
+		<member name="max_hp" type="int" setter="" getter="" default="30">
+			maksymalne pkt życia szkieletu
+		</member>
+		<member name="floor_ray_offset" type="float" setter="" getter="" default="20.0">
+			odleglosc od srodka body przewidujace krawedz platformy
+		</member>
+		<member name="wait_time" type="float" setter="" getter="" default="3.0">
+			czas na idle na krawedzi patrolu
+		</member>
+		<member name="player_detector_offset" type="float" setter="" getter="" default="10.0">
+			przesunięcie wykrycia gracza
+		</member>
+		<member name="hit_detector_offset" type="float" setter="" getter="" default="10.0">
+			przesunięcie obszaru w którym szkielet zadaje dmg przy ataku
+		</member>
+		<member name="attack_damage" type="int" setter="" getter="" default="15">
+			obrażenia jakie zadaje szkielet
+		</member>
+		<member name="attack_hit_frames" type="int[]" setter="" getter="" default="[...]">
+			klatki animacji ataku w których gracz może dostać dmg
+		</member>
+		<member name="is_waiting" type="bool" setter="" getter="" default="false">
+			czy czeka na końcu patrolowanego obszaru
+		</member>
+		<member name="hp" type="int" setter="" getter="">
+			aktualne punkty życia szkieletu
+		</member>
+		<member name="direction" type="int" setter="" getter="" default="1">
+			kierunek ruchu
+		</member>
+		<member name="start_x" type="float" setter="" getter="">
+			startowa wspolzedna
+		</member>
+		<member name="is_dead" type="bool" setter="" getter="" default="false">
+			czy jest martwy
+		</member>
+		<member name="player_in_attack_range" type="bool" setter="" getter="" default="false">
+			czy gracz jest w zasięgu ataku
+		</member>
+		<member name="is_attacking" type="bool" setter="" getter="" default="false">
+			czy właśnie atakuje
+		</member>
+		<member name="gravity" type="float" setter="" getter="" default="get_setting(...)">
+			grawitacja
+		</member>
+		<member name="attack_has_hit" type="bool" setter="" getter="" default="false">
+			czy atak trafił
+		</member>
+		<member name="body" type="CharacterBody2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="sprite" type="AnimatedSprite2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="floor_ray" type="RayCast2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="player_detector" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="hit_detector" type="Area2D" setter="" getter="" default="&lt;unknown&gt;">
+		</member>
+		<member name="is_hurt" type="bool" setter="" getter="" default="false">
+			czy właśnie dostał obrażenia
+		</member>
+		<member name="attack_generation" type="int" setter="" getter="" default="0">
+			pole pomocnicze do powrotu do ataku
+		</member>
+		<member name="hurt_generation" type="int" setter="" getter="" default="0">
+			pole pomocnicze do powrotu do poprzedniej czynności po otrzymaniu dmg
+		</member>
+		<member name="wait_generation" type="int" setter="" getter="" default="0">
+			pole pomocnicze do powrotu do czekania na końcu patrolu
+		</member>
+	</members>
+</class>
