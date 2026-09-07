@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>archer - dokumentacja</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
+    line-height: 1.6;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 6px;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eeeeee;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.signature {
+    background: #f3f3f3;
+    border-left: 4px solid #555;
+    padding: 10px;
+    font-family: Consolas, monospace;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 25px;
+}
+
+.meta {
+    color: #666;
+}
+
+.class-list li {
+    margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+
+<h1>archer</h1><p class="meta">
+Dziedziczy po: <code>Node2D</code>
+</p><h2>Opis</h2><p><strong><br>		Klasa przeciwnika archer<br>	</strong></p><p class='description'><br>		Lokalizuje gracza i atakuje go z dystansu tworząc obiekty klasy enemy_arrow<br>	</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>save_id</h3><div class='signature'>save_id: String = ""</div><p class='description'><br>			id powołanego obiektu archer<br>		</p><h3>max_hp</h3><div class='signature'>max_hp: int = 25</div><p class='description'><br>			maksymalne zdrowie<br>		</p><h3>attack_damage</h3><div class='signature'>attack_damage: int = 10</div><p class='description'><br>			zadawane obrażenia<br>		</p><h3>shoot_frame</h3><div class='signature'>shoot_frame: int = 5</div><p class='description'><br>			klatka animacji w kt&#243;rej tworzony jest obiekt enemy_arrow<br>		</p><h3>shoot_cooldown</h3><div class='signature'>shoot_cooldown: float = 2.0</div><p class='description'><br>			czas między strzałami<br>		</p><h3>arrow_scene</h3><div class='signature'>arrow_scene: PackedScene</div><p class='description'><br>			obiekt enemy_arrow<br>		</p><h3>arrow_spawn_offset</h3><div class='signature'>arrow_spawn_offset: Vector2 = Vector2(25, -15)</div><p class='description'><br>			przesunięcie punktu w kt&#243;rym tworzony jest obiekt enemy_arrow<br>		</p><h3>sprite</h3><div class='signature'>sprite: AnimatedSprite2D = <unknown></div><p class='description'><br>			node z animacjami przeciwnika<br>		</p><h3>player_detector</h3><div class='signature'>player_detector: Area2D = <unknown></div><p class='description'><br>			obszar wykrywający gracza<br>		</p><h3>body_collision</h3><div class='signature'>body_collision: CollisionShape2D = <unknown></div><p class='description'><br>			obszar kolizji z graczem<br>		</p><h3>hurtbox</h3><div class='signature'>hurtbox: Area2D = <unknown></div><p class='description'><em>Brak opisu.</em></p><h3>hurtbox_collision</h3><div class='signature'>hurtbox_collision: CollisionShape2D = <unknown></div><p class='description'><br>			obszar trafienia przeciwnika<br>		</p><h3>arrow_spawn_point</h3><div class='signature'>arrow_spawn_point: Marker2D = <unknown></div><p class='description'><br>			punkt w kt&#243;rym tworzony jest obiekt enemy_arrow<br>		</p><h3>shoot_timer</h3><div class='signature'>shoot_timer: Timer = <unknown></div><p class='description'><br>			timer między strzałami<br>		</p><h3>hp</h3><div class='signature'>hp: int</div><p class='description'><br>			aktualne hp<br>		</p><h3>player</h3><div class='signature'>player: Node2D = null</div><p class='description'><br>			pole do por&#243;wnania z graczem<br>		</p><h3>facing_direction</h3><div class='signature'>facing_direction: int = 1</div><p class='description'><br>			pole do obrot&#243;w w stronę gracza<br>		</p><h3>is_dead</h3><div class='signature'>is_dead: bool = false</div><p class='description'><br>			pole do sprawdzania czy archer żyje<br>		</p><h3>is_hurt</h3><div class='signature'>is_hurt: bool = false</div><p class='description'><br>			pole do sprawdzenia czy dostał obrażenia<br>		</p><h3>is_attacking</h3><div class='signature'>is_attacking: bool = false</div><p class='description'><br>			pole do sprawdzania czy aktualnie atakuje<br>		</p><h3>arrow_shot_this_attack</h3><div class='signature'>arrow_shot_this_attack: bool = false</div><p class='description'><br>			pole do sprawdzenia czy już wypuścił strzałę podczas tego ataku<br>		</p><h3>attack_generation</h3><div class='signature'>attack_generation: int = 0</div><p class='description'><br>			pole pomocnicze do powrotu do ataku po otrzymaniu obrażeń<br>		</p><h3>hurt_generation</h3><div class='signature'>hurt_generation: int = 0</div><p class='description'><br>			pole pomocnicze po otrzymaniu obrażeń<br>		</p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'><br>				funkcja przy powołaniu obiektu do życia<br>			</p><h3>_on_player_detector_body_entered</h3><div class='signature'>_on_player_detector_body_entered(body: Node2D) -&gt; void</div><p class='description'><br>				namierzanie gracza<br>			</p><h3>_on_player_detector_body_exited</h3><div class='signature'>_on_player_detector_body_exited(body: Node2D) -&gt; void</div><p class='description'><br>				koniec namierzania gracza<br>			</p><h3>_on_shoot_timer_timeout</h3><div class='signature'>_on_shoot_timer_timeout() -&gt; void</div><p class='description'><br>				timer między atakami<br>			</p><h3>update_facing</h3><div class='signature'>update_facing() -&gt; void</div><p class='description'><br>				obracanie w stronę gracza<br>			</p><h3>_process</h3><div class='signature'>_process(_delta: float) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>try_attack</h3><div class='signature'>try_attack() -&gt; void</div><p class='description'><br>				pr&#243;ba wykonania ataku<br>			</p><h3>_on_sprite_frame_changed</h3><div class='signature'>_on_sprite_frame_changed() -&gt; void</div><p class='description'><br>				sprawdza kiedy archer moze wypuscic strzale<br>			</p><h3>shoot_arrow</h3><div class='signature'>shoot_arrow() -&gt; void</div><p class='description'><br>				tworzy obiekt enemy arrow<br>			</p><h3>take_damage</h3><div class='signature'>take_damage(damage: int) -&gt; void</div><p class='description'><br>				przyjmowanie obrażeń<br>			</p><h3>die</h3><div class='signature'>die() -&gt; void</div><p class='description'><br>				umieranko<br>			</p><h3>disable_collisions</h3><div class='signature'>disable_collisions() -&gt; void</div><p class='description'><br>				usuwa kolizje z graczem po smierci<br>			</p><h3>restore_dead_state</h3><div class='signature'>restore_dead_state() -&gt; void</div><p class='description'><br>				jeśli był zabity to przy wczytaniu wr&#243;ć do bycia martwym<br>			</p>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>save_manager - dokumentacja</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
+    line-height: 1.6;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 6px;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eeeeee;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.signature {
+    background: #f3f3f3;
+    border-left: 4px solid #555;
+    padding: 10px;
+    font-family: Consolas, monospace;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 25px;
+}
+
+.meta {
+    color: #666;
+}
+
+.class-list li {
+    margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+
+<h1>save_manager</h1><p class="meta">
+Dziedziczy po: <code>Node</code>
+</p><h2>Opis</h2><p><strong><br>		Klasa save_manager<br>	</strong></p><p class='description'><br>		zarząda procesem zapisu i wczytywania gry<br>	</p><h2>SygnaĹ‚y</h2><h3>coins_changed</h3><div class='signature'>coins_changed(new_amount: int)</div><p class='description'>System.Xml.XmlElement</p><h3>upgrades_changed</h3><div class='signature'>upgrades_changed()</div><p class='description'>System.Xml.XmlElement</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>profile_data</h3><div class='signature'>profile_data: Dictionary = {}</div><p class='description'><br>			pola do zapisu profilu gracza<br>		</p><h3>playthrough_data</h3><div class='signature'>playthrough_data: Dictionary = {}</div><p class='description'><br>			pola do zapisu rozgrywki<br>		</p><h3>active_scene_path</h3><div class='signature'>active_scene_path: String = ""</div><p class='description'><br>			ścieżka do aktualnego poziomu<br>		</p><h3>transition_player_state</h3><div class='signature'>transition_player_state: Dictionary = {}</div><p class='description'><br>			Tymczasowy stan gracza używany podczas przejścia np. level_01 -&gt; level_02 itd.<br>		</p><h2>StaĹ‚e i wartoĹ›ci enum</h2><h3>SAVE_DIR</h3><div class='signature'>SAVE_DIR = "user://saved_games"</div><p class='description'><br>			ścieżka katalogu z zapisami gry<br>		</p><h3>SAVE_PATH</h3><div class='signature'>SAVE_PATH = "user://saved_games/savegame.json"</div><p class='description'><br>			ścieżka do zapisu gry<br>		</p><h3>DAMAGE_PER_LEVEL</h3><div class='signature'>DAMAGE_PER_LEVEL = 2</div><p class='description'><br>			dodatkowe zadawane obrażenia za poziom ulepszenia<br>		</p><h3>DAMAGE_UPGRADE_BASE_COST</h3><div class='signature'>DAMAGE_UPGRADE_BASE_COST = 10</div><p class='description'><br>			dodatkowy koszt za każdy poziom ulepszenia dmg<br>		</p><h3>BASE_MAX_HP</h3><div class='signature'>BASE_MAX_HP = 100</div><p class='description'><br>			początkowa wartość maksymalnego hp<br>		</p><h3>MAX_HP_PER_LEVEL</h3><div class='signature'>MAX_HP_PER_LEVEL = 20</div><p class='description'><br>			dodatkowe punkty życia za poziom ulepszenia<br>		</p><h3>MAX_HP_UPGRADE_BASE_COST</h3><div class='signature'>MAX_HP_UPGRADE_BASE_COST = 20</div><p class='description'><br>			dodatkowy koszt za każdy poziom ulepszenia hp<br>		</p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>create_default_profile</h3><div class='signature'>create_default_profile() -&gt; Dictionary</div><p class='description'><br>				stw&#243;rz podstawowy profil gracza<br>			</p><h3>create_default_playthrough</h3><div class='signature'>create_default_playthrough() -&gt; Dictionary</div><p class='description'><br>				stw&#243;rz profil gracza do rozgrywki<br>			</p><h3>reset_runtime_data</h3><div class='signature'>reset_runtime_data() -&gt; void</div><p class='description'><br>				usuń profil i zapisane detale rozgrywki<br>			</p><h3>create_new_game</h3><div class='signature'>create_new_game() -&gt; void</div><p class='description'><br>				zresetuj zapisane pliki i stw&#243;rz nowe pod nową rozgrywkę<br>			</p><h3>get_coins</h3><div class='signature'>get_coins() -&gt; int</div><p class='description'><br>				sprawdż zapisaną ilosć monet<br>			</p><h3>add_coins</h3><div class='signature'>add_coins(amount: int) -&gt; void</div><p class='description'><br>				dodaj monety do profilu  gracza<br>			</p><h3>spend_coins</h3><div class='signature'>spend_coins(amount: int) -&gt; bool</div><p class='description'><br>				wydaj monety na ulepszenia<br>			</p><h3>get_damage_level</h3><div class='signature'>get_damage_level() -&gt; int</div><p class='description'><br>				zwr&#243;ć level ulepszenia dmg<br>			</p><h3>get_damage_bonus</h3><div class='signature'>get_damage_bonus() -&gt; int</div><p class='description'><br>				dodaj bonusowy dmg z ulepszeń<br>			</p><h3>get_damage_upgrade_cost</h3><div class='signature'>get_damage_upgrade_cost() -&gt; int</div><p class='description'><br>				zmień koszt następnego poziomu ulepszenia<br>			</p><h3>buy_damage_upgrade</h3><div class='signature'>buy_damage_upgrade() -&gt; bool</div><p class='description'><br>				kup ulepszenie dmg<br>			</p><h3>get_playthrough_damage_bonus</h3><div class='signature'>get_playthrough_damage_bonus() -&gt; int</div><p class='description'><br>				sprawdź jaki jest dodatkowy dmg z powerup&#243;w<br>			</p><h3>add_playthrough_damage_bonus</h3><div class='signature'>add_playthrough_damage_bonus(amount: int) -&gt; void</div><p class='description'><br>				dodaj dmg z powerupu<br>			</p><h3>get_max_hp_level</h3><div class='signature'>get_max_hp_level() -&gt; int</div><p class='description'><br>				zwr&#243;ć level ulepszenia hp<br>			</p><h3>get_max_hp</h3><div class='signature'>get_max_hp() -&gt; int</div><p class='description'><br>				zwr&#243;ć maksymalne hp po ulepszeniach<br>			</p><h3>get_max_hp_upgrade_cost</h3><div class='signature'>get_max_hp_upgrade_cost() -&gt; int</div><p class='description'><br>				sprawdź koszt następnego levelupu dla hp<br>			</p><h3>buy_max_hp_upgrade</h3><div class='signature'>buy_max_hp_upgrade() -&gt; bool</div><p class='description'><br>				kup nowy level ulepszenia hp<br>			</p><h3>start_new_playthrough</h3><div class='signature'>start_new_playthrough() -&gt; void</div><p class='description'><br>				restartuje aktualną rozgrywkę, ulepszenia i monety zostają<br>			</p><h3>has_current_playthrough</h3><div class='signature'>has_current_playthrough() -&gt; bool</div><p class='description'><br>				sprawdza czy jest zapisana rogrywka<br>			</p><h3>get_playthrough_scene_path</h3><div class='signature'>get_playthrough_scene_path() -&gt; String</div><p class='description'><br>				zwraca ścieżkę do sceny z playthrough_data<br>			</p><h3>get_current_level_path</h3><div class='signature'>get_current_level_path() -&gt; String</div><p class='description'><br>				zwraca ścieżkę do teraźniejszego poziomu<br>			</p><h3>mark_enemy_defeated</h3><div class='signature'>mark_enemy_defeated(enemy_id: String) -&gt; void</div><p class='description'><br>				zapisz wrog&#243;w jako pokonanych<br>			</p><h3>is_enemy_defeated</h3><div class='signature'>is_enemy_defeated(enemy_id: String) -&gt; bool</div><p class='description'><br>				sprawdź czy przeciwnik jest pokonany<br>			</p><h3>mark_pickup_collected</h3><div class='signature'>mark_pickup_collected(pickup_id: String) -&gt; void</div><p class='description'><br>				zapisz pickupy jako zebrane<br>			</p><h3>is_pickup_collected</h3><div class='signature'>is_pickup_collected(pickup_id: String) -&gt; bool</div><p class='description'><br>				sprawdź czy pickup jest zebrany<br>			</p><h3>capture_current_playthrough</h3><div class='signature'>capture_current_playthrough() -&gt; bool</div><p class='description'><br>				zapisz teraźniejszą rozgrywkę<br>			</p><h3>restore_current_playthrough_player</h3><div class='signature'>restore_current_playthrough_player() -&gt; void</div><p class='description'><br>				wczytaj zapisaną rozgrywkę<br>			</p><h3>capture_player_transition_state</h3><div class='signature'>capture_player_transition_state() -&gt; bool</div><p class='description'><br>				zapisz w jakim stanie jest postać gracza<br>			</p><h3>restore_player_transition_state</h3><div class='signature'>restore_player_transition_state() -&gt; void</div><p class='description'><br>				wczytaj zapisaną postać gracza<br>			</p><h3>save_all</h3><div class='signature'>save_all() -&gt; void</div><p class='description'><br>				zapisz wszytkie informacje<br>			</p><h3>ensure_save_directory</h3><div class='signature'>ensure_save_directory() -&gt; int</div><p class='description'><br>				upewnij się że jest gdzie zapisać<br>			</p><h3>load_from_disk</h3><div class='signature'>load_from_disk() -&gt; bool</div><p class='description'><br>				wczytaj z dysku<br>			</p><h3>has_save</h3><div class='signature'>has_save() -&gt; bool</div><p class='description'><br>				sprawdź czy już jest zapis<br>			</p><h3>delete_save</h3><div class='signature'>delete_save() -&gt; void</div><p class='description'><br>				usuń zapis<br>			</p>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skeleton - dokumentacja</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
+    line-height: 1.6;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 6px;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eeeeee;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.signature {
+    background: #f3f3f3;
+    border-left: 4px solid #555;
+    padding: 10px;
+    font-family: Consolas, monospace;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 25px;
+}
+
+.meta {
+    color: #666;
+}
+
+.class-list li {
+    margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+
+<h1>Skeleton</h1><p class="meta">
+Dziedziczy po: <code>Node2D</code>
+</p><h2>Opis</h2><p><strong><br>		Klasa skeleton<br>	</strong></p><p class='description'><br>		Przeciwnik patrolujący teren i zadający obrażenia na kr&#243;tkim dystansie<br>	</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>save_id</h3><div class='signature'>save_id: String = ""</div><p class='description'><br>			zmienna do zapisu pokonanych przeciwnik&#243;w<br>		</p><h3>speed</h3><div class='signature'>speed: float = 75.0</div><p class='description'><br>			szybkosc szkieletu<br>		</p><h3>patrol_distance</h3><div class='signature'>patrol_distance: float = 250.0</div><p class='description'><br>			odleglosc jaka patroluje szkielet w obie strony od pkt spawnu<br>		</p><h3>max_hp</h3><div class='signature'>max_hp: int = 30</div><p class='description'><br>			maksymalne pkt życia szkieletu<br>		</p><h3>floor_ray_offset</h3><div class='signature'>floor_ray_offset: float = 20.0</div><p class='description'><br>			odleglosc od srodka body przewidujace krawedz platformy<br>		</p><h3>wait_time</h3><div class='signature'>wait_time: float = 3.0</div><p class='description'><br>			czas na idle na krawedzi patrolu<br>		</p><h3>player_detector_offset</h3><div class='signature'>player_detector_offset: float = 10.0</div><p class='description'><br>			przesunięcie wykrycia gracza<br>		</p><h3>hit_detector_offset</h3><div class='signature'>hit_detector_offset: float = 10.0</div><p class='description'><br>			przesunięcie obszaru w kt&#243;rym szkielet zadaje dmg przy ataku<br>		</p><h3>attack_damage</h3><div class='signature'>attack_damage: int = 15</div><p class='description'><br>			obrażenia jakie zadaje szkielet<br>		</p><h3>attack_hit_frames</h3><div class='signature'>attack_hit_frames: int[] = [...]</div><p class='description'><br>			klatki animacji ataku w kt&#243;rych gracz może dostać dmg<br>		</p><h3>is_waiting</h3><div class='signature'>is_waiting: bool = false</div><p class='description'><br>			czy czeka na końcu patrolowanego obszaru<br>		</p><h3>hp</h3><div class='signature'>hp: int</div><p class='description'><br>			aktualne punkty życia szkieletu<br>		</p><h3>direction</h3><div class='signature'>direction: int = 1</div><p class='description'><br>			kierunek ruchu<br>		</p><h3>start_x</h3><div class='signature'>start_x: float</div><p class='description'><br>			startowa wspolzedna<br>		</p><h3>is_dead</h3><div class='signature'>is_dead: bool = false</div><p class='description'><br>			czy jest martwy<br>		</p><h3>player_in_attack_range</h3><div class='signature'>player_in_attack_range: bool = false</div><p class='description'><br>			czy gracz jest w zasięgu ataku<br>		</p><h3>is_attacking</h3><div class='signature'>is_attacking: bool = false</div><p class='description'><br>			czy właśnie atakuje<br>		</p><h3>gravity</h3><div class='signature'>gravity: float = get_setting(...)</div><p class='description'><br>			grawitacja<br>		</p><h3>attack_has_hit</h3><div class='signature'>attack_has_hit: bool = false</div><p class='description'><br>			czy atak trafił<br>		</p><h3>body</h3><div class='signature'>body: CharacterBody2D = <unknown></div><p class='description'><em>Brak opisu.</em></p><h3>sprite</h3><div class='signature'>sprite: AnimatedSprite2D = <unknown></div><p class='description'><em>Brak opisu.</em></p><h3>floor_ray</h3><div class='signature'>floor_ray: RayCast2D = <unknown></div><p class='description'><em>Brak opisu.</em></p><h3>player_detector</h3><div class='signature'>player_detector: Area2D = <unknown></div><p class='description'><em>Brak opisu.</em></p><h3>hit_detector</h3><div class='signature'>hit_detector: Area2D = <unknown></div><p class='description'><em>Brak opisu.</em></p><h3>is_hurt</h3><div class='signature'>is_hurt: bool = false</div><p class='description'><br>			czy właśnie dostał obrażenia<br>		</p><h3>attack_generation</h3><div class='signature'>attack_generation: int = 0</div><p class='description'><br>			pole pomocnicze do powrotu do ataku<br>		</p><h3>hurt_generation</h3><div class='signature'>hurt_generation: int = 0</div><p class='description'><br>			pole pomocnicze do powrotu do poprzedniej czynności po otrzymaniu dmg<br>		</p><h3>wait_generation</h3><div class='signature'>wait_generation: int = 0</div><p class='description'><br>			pole pomocnicze do powrotu do czekania na końcu patrolu<br>		</p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'><br>				funkcja nadaje wartość hp, zapisuje pozycję poziomą na kt&#243;rej szkielet zaczyna, podłącza sygnał zmienianej klatki, oraz sprawdza czy nie był wcześniej pokonany przy wczytaniu<br>			</p><h3>restore_dead_state</h3><div class='signature'>restore_dead_state() -&gt; void</div><p class='description'><br>				funkcja przywraca szkielet do stanu pokonanego<br>			</p><h3>_physics_process</h3><div class='signature'>_physics_process(delta: float) -&gt; void</div><p class='description'><br>				Procesy fizyczne dla szkieletu<br>			</p><h3>change_direction</h3><div class='signature'>change_direction(new_direction: int) -&gt; void</div><p class='description'><br>				zmiana kierunku szkieleta i wszystkich jego podzespoł&#243;w<br>			</p><h3>stop_and_turn</h3><div class='signature'>stop_and_turn() -&gt; void</div><p class='description'><br>				funkcja do czekania na końcu patrolowanego obszaru<br>			</p><h3>cancel_wait</h3><div class='signature'>cancel_wait() -&gt; void</div><p class='description'><br>				funkcja pomocnicza do stop_and_turn()<br>			</p><h3>take_damage</h3><div class='signature'>take_damage(amount: int) -&gt; void</div><p class='description'><br>				otrzymywanie obrażeń<br>			</p><h3>resume_behavior</h3><div class='signature'>resume_behavior() -&gt; void</div><p class='description'><br>				po otrzymanych obrażeniach wr&#243;ć do poprzedniej czynności<br>			</p><h3>die</h3><div class='signature'>die() -&gt; void</div><p class='description'><br>				umieranko<br>			</p><h3>_on_player_detector_body_entered</h3><div class='signature'>_on_player_detector_body_entered(body_entered: Node2D) -&gt; void</div><p class='description'><br>				rozpocznij atak gdy gracza wejdzie w strefę ataku<br>			</p><h3>_on_player_detector_body_exited</h3><div class='signature'>_on_player_detector_body_exited(body_exited: Node2D) -&gt; void</div><p class='description'><br>				przestań rozpoczynać ataki gdy nie ma kogo atakować<br>			</p><h3>attack</h3><div class='signature'>attack() -&gt; void</div><p class='description'><br>				atak<br>			</p><h3>is_player_in_detector</h3><div class='signature'>is_player_in_detector() -&gt; bool</div><p class='description'><br>				sprawdź czy gracz jest w detektorze<br>			</p><h3>_on_sprite_frame_changed</h3><div class='signature'>_on_sprite_frame_changed() -&gt; void</div><p class='description'><br>				funkcja do sprawdzania czy gracz jest na linii ataku w odpowiednich klatakch animacji ataku<br>			</p><h3>check_attack_hit</h3><div class='signature'>check_attack_hit() -&gt; void</div><p class='description'>System.Xml.XmlElement</p>
+</body>
+</html>

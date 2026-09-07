@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>game_menager - dokumentacja</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
+    line-height: 1.6;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 6px;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eeeeee;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.signature {
+    background: #f3f3f3;
+    border-left: 4px solid #555;
+    padding: 10px;
+    font-family: Consolas, monospace;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 25px;
+}
+
+.meta {
+    color: #666;
+}
+
+.class-list li {
+    margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+
+<h1>game_menager</h1><p class="meta">
+Dziedziczy po: <code>Node</code>
+</p><h2>Opis</h2><p><strong><br>		og&#243;lny menager gry<br>	</strong></p><p class='description'>System.Xml.XmlElement</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>is_changing_scene</h3><div class='signature'>is_changing_scene: bool = false</div><p class='description'><br>			zmienna pomocnicza sprawdzająca czy jesteśmy w trakcie zmieniania sceny<br>		</p><h2>StaĹ‚e i wartoĹ›ci enum</h2><h3>MAIN_MENU_SCENE</h3><div class='signature'>MAIN_MENU_SCENE = "res://Scenes/UI/main_menu.tscn"</div><p class='description'><br>			ścieżka do sceny z menu gł&#243;wnym<br>		</p><h3>PLAYER_MENU_SCENE</h3><div class='signature'>PLAYER_MENU_SCENE = "res://Scenes/UI/player_menu.tscn"</div><p class='description'><br>			ścieżka do sceny z player menu<br>		</p><h3>START_SCENE</h3><div class='signature'>START_SCENE = "res://Scenes/levels/level_01.tscn"</div><p class='description'><br>			ścieżka do sceny z pierwszym poziomem<br>		</p><h2>Metody</h2><h3>has_save_game</h3><div class='signature'>has_save_game() -&gt; bool</div><p class='description'><br>				sprawdz czy istnieje zapisana gra<br>			</p><h3>new_game</h3><div class='signature'>new_game() -&gt; void</div><p class='description'><br>				włącza nową grę<br>			</p><h3>load_game</h3><div class='signature'>load_game() -&gt; void</div><p class='description'><br>				wczytuje poprzedni profil gracza<br>			</p><h3>start_play</h3><div class='signature'>start_play() -&gt; void</div><p class='description'><br>				zaczyna nową grę z nowym profilem gracza<br>			</p><h3>load_current_playthrough</h3><div class='signature'>load_current_playthrough() -&gt; void</div><p class='description'><br>				wczytuje zapisany profil gracza<br>			</p><h3>save_game</h3><div class='signature'>save_game() -&gt; void</div><p class='description'><br>				przekieruj do zapisu z savemanager<br>			</p><h3>change_level</h3><div class='signature'>change_level(next_level_path: String) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>go_to_player_menu</h3><div class='signature'>go_to_player_menu() -&gt; void</div><p class='description'><br>				przejdź do player menu<br>			</p><h3>go_to_main_menu</h3><div class='signature'>go_to_main_menu() -&gt; void</div><p class='description'><br>				przejdź do mainmenu<br>			</p><h3>change_scene</h3><div class='signature'>change_scene(scene_path: String) -&gt; bool</div><p class='description'>System.Xml.XmlElement</p><h3>quit_game</h3><div class='signature'>quit_game() -&gt; void</div><p class='description'><br>				kończy grę<br>			</p>
+</body>
+</html>

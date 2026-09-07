@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>coin - dokumentacja</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
+    line-height: 1.6;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 6px;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eeeeee;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.signature {
+    background: #f3f3f3;
+    border-left: 4px solid #555;
+    padding: 10px;
+    font-family: Consolas, monospace;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 25px;
+}
+
+.meta {
+    color: #666;
+}
+
+.class-list li {
+    margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+
+<h1>coin</h1><p class="meta">
+Dziedziczy po: <code>Area2D</code>
+</p><h2>Opis</h2><p><strong><br>		Klasa coin<br>	</strong></p><p class='description'><br>		monety kt&#243;re można zebrać i kupić za nie ulepszenia gracza<br>	</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>value</h3><div class='signature'>value: int = 1</div><p class='description'><br>			wartość monet<br>		</p><h3>save_id</h3><div class='signature'>save_id: String = ""</div><p class='description'><br>			id monet służące do sprawdzenia czy monety były już zebrane<br>		</p><h3>collected</h3><div class='signature'>collected: bool = false</div><p class='description'><br>			pole pomocniczne służące do znikania zebranych monet<br>		</p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_on_body_entered</h3><div class='signature'>_on_body_entered(body: Node2D) -&gt; void</div><p class='description'><br>				przy zebraniu monety dodaj ją do monet gracza, usuń monetę i dodaj do zapisu jako zebraną<br>			</p>
+</body>
+</html>

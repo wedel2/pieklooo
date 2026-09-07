@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>arrow - dokumentacja</title>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
+    line-height: 1.6;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 6px;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eeeeee;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.signature {
+    background: #f3f3f3;
+    border-left: 4px solid #555;
+    padding: 10px;
+    font-family: Consolas, monospace;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 25px;
+}
+
+.meta {
+    color: #666;
+}
+
+.class-list li {
+    margin-bottom: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<p><a href="index.html">â† PowrĂłt do strony gĹ‚Ăłwnej</a></p>
+
+<h1>arrow</h1><p class="meta">
+Dziedziczy po: <code>Area2D</code>
+</p><h2>Opis</h2><p><strong><br>		Strzała gracza<br>	</strong></p><p class='description'><br>		jeśli gracz jest wyposażony w broń - łuk, tworzy obiekty arrow żeby zadawać obrażenia przeciwnikom z dystansu<br>	</p><h2>Zmienne i wĹ‚aĹ›ciwoĹ›ci</h2><h3>speed</h3><div class='signature'>speed: float = 700.0</div><p class='description'><br>			szybkość poruszania się strzały<br>		</p><h3>direction</h3><div class='signature'>direction: int = 1</div><p class='description'><br>			kierunek poruszania się strzały<br>		</p><h3>damage</h3><div class='signature'>damage: int = 5</div><p class='description'><br>			obrażenia strzały<br>		</p><h3>animated_sprite</h3><div class='signature'>animated_sprite: AnimatedSprite2D = <unknown></div><p class='description'><br>			referencja do animacji strzały<br>		</p><h3>collision_shape</h3><div class='signature'>collision_shape: CollisionShape2D = <unknown></div><p class='description'><br>			referencja do oszaru kolizji strzały<br>		</p><h3>is_flying</h3><div class='signature'>is_flying: bool = true</div><p class='description'><br>			pole pomocnicze do sprawdzenia czy strzała jest w locie<br>		</p><h2>Metody</h2><h3>_ready</h3><div class='signature'>_ready() -&gt; void</div><p class='description'><br>				zaczyna przy powołaniu obiektu do życia<br>			</p><h3>_physics_process</h3><div class='signature'>_physics_process(delta: float) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>setup</h3><div class='signature'>setup(new_direction: int, new_damage: int) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>_on_area_entered</h3><div class='signature'>_on_area_entered(area: Area2D) -&gt; void</div><p class='description'>System.Xml.XmlElement</p><h3>hit_enemy</h3><div class='signature'>hit_enemy() -&gt; void</div><p class='description'><br>				jak trafi to usuń strzałę<br>			</p><h3>_on_visible_on_screen_notifier_2d_screen_exited</h3><div class='signature'>_on_visible_on_screen_notifier_2d_screen_exited() -&gt; void</div><p class='description'><br>				poza ekranem usun strzałę<br>			</p><h3>_on_body_entered</h3><div class='signature'>_on_body_entered(body: Node2D) -&gt; void</div><p class='description'><br>				jak uderzy w teren<br>			</p><h3>hit_terrain</h3><div class='signature'>hit_terrain() -&gt; void</div><p class='description'><br>				jak uderzy w teren to puść animację uderzania w teren po czym usun strzałę<br>			</p>
+</body>
+</html>

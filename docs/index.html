@@ -1,36 +1,91 @@
-	<title>Dokumentacja kodu projektu</title>
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dokumentacja kodu projektu</title>
+
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 25px;
+    line-height: 1.6;
+    color: #222;
+}
+
+h1 {
+    border-bottom: 3px solid #333;
+    padding-bottom: 10px;
+}
+
+h2 {
+    margin-top: 35px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 6px;
+}
+
+h3 {
+    margin-top: 25px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+code {
+    background: #eeeeee;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.signature {
+    background: #f3f3f3;
+    border-left: 4px solid #555;
+    padding: 10px;
+    font-family: Consolas, monospace;
+    margin-bottom: 10px;
+}
+
+.description {
+    margin-bottom: 25px;
+}
+
+.meta {
+    color: #666;
+}
+
+.class-list li {
+    margin-bottom: 8px;
+}
+</style>
 </head>
+
 <body>
 
 <h1>Dokumentacja kodu projektu</h1>
 
 <p>
-Dokumentacja została wygenerowana z kodu GDScript projektu
-przy użyciu narzędzia Godot DocTool.
+Dokumentacja zostaĹ‚a wygenerowana na podstawie dokumentacji XML
+utworzonej przez Godot DocTool z komentarzy dokumentacyjnych
+w kodzie GDScript.
 </p>
 
-<h2>Dokumentacja klas i skryptów</h2>
+<p>
+Liczba udokumentowanych klas/skryptĂłw:
+<strong>19</strong>
+</p>
 
-<ul>
-    <li><a href="archer.xml">archer</a></li>
-    <li><a href="arrow.xml">arrow</a></li>
-    <li><a href="coin.xml">coin</a></li>
-    <li><a href="game_menager.xml">game_menager</a></li>
-    <li><a href="imp_kamikaze.xml">imp_kamikaze</a></li>
-    <li><a href="main_menu.xml">main_menu</a></li>
-    <li><a href="player_menu.xml">player_menu</a></li>
-    <li><a href="player.xml">Player</a></li>
-    <li><a href="save_manager.xml">save_manager</a></li>
-    <li><a href="Scripts--damage_powerup.gd.xml">damage_powerup</a></li>
-    <li><a href="Scripts--Enemy scripts--enemy_arrow.gd.xml">enemy_arrow</a></li>
-    <li><a href="Scripts--GI--killzone.gd.xml">killzone</a></li>
-    <li><a href="Scripts--level_exit.gd.xml">level_exit</a></li>
-    <li><a href="Scripts--UI--HUD.gd.xml">HUD</a></li>
-    <li><a href="Scripts--UI--pause_menu.gd.xml">pause_menu</a></li>
-    <li><a href="settings_meneger.xml">settings_meneger</a></li>
-    <li><a href="Skeleton.xml">Skeleton</a></li>
-    <li><a href="WeaponData.xml">WeaponData</a></li>
-    <li><a href="wepon_pickup.xml">wepon_pickup</a></li>
+<h2>Klasy i skrypty</h2>
+
+<ul class="class-list">
+<li><a href='player_menu.gd.html'>&quot;player_menu.gd&quot;</a> <span class='meta'>(extends Control)</span></li><li><a href='Scripts--damage_powerup.gd.html'>&quot;Scripts/damage_powerup.gd&quot;</a> <span class='meta'>(extends Area2D)</span></li><li><a href='Scripts--Enemy scripts--enemy_arrow.gd.html'>&quot;Scripts/Enemy scripts/enemy_arrow.gd&quot;</a> <span class='meta'>(extends Area2D)</span></li><li><a href='Scripts--GI--killzone.gd.html'>&quot;Scripts/GI/killzone.gd&quot;</a> <span class='meta'>(extends Area2D)</span></li><li><a href='Scripts--level_exit.gd.html'>&quot;Scripts/level_exit.gd&quot;</a> <span class='meta'>(extends Area2D)</span></li><li><a href='Scripts--UI--HUD.gd.html'>&quot;Scripts/UI/HUD.gd&quot;</a> <span class='meta'>(extends CanvasLayer)</span></li><li><a href='Scripts--UI--pause_menu.gd.html'>&quot;Scripts/UI/pause_menu.gd&quot;</a> <span class='meta'>(extends CanvasLayer)</span></li><li><a href='archer.html'>archer</a> <span class='meta'>(extends Node2D)</span></li><li><a href='arrow.html'>arrow</a> <span class='meta'>(extends Area2D)</span></li><li><a href='coin.html'>coin</a> <span class='meta'>(extends Area2D)</span></li><li><a href='game_menager.html'>game_menager</a> <span class='meta'>(extends Node)</span></li><li><a href='imp_kamikaze.html'>imp_kamikaze</a> <span class='meta'>(extends CharacterBody2D)</span></li><li><a href='main_menu.html'>main_menu</a> <span class='meta'>(extends Control)</span></li><li><a href='player.html'>player</a> <span class='meta'>(extends CharacterBody2D)</span></li><li><a href='save_manager.html'>save_manager</a> <span class='meta'>(extends Node)</span></li><li><a href='settings_meneger.html'>settings_meneger</a> <span class='meta'>(extends Node)</span></li><li><a href='Skeleton.html'>Skeleton</a> <span class='meta'>(extends Node2D)</span></li><li><a href='WeaponData.html'>WeaponData</a> <span class='meta'>(extends Resource)</span></li><li><a href='wepon_pickup.html'>wepon_pickup</a> <span class='meta'>(extends Area2D)</span></li>
 </ul>
 
 </body>
