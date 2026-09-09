@@ -39,7 +39,7 @@ func _on_save_pressed() -> void:
 	GameManager.save_game()
 
 
-func _on_main_menu_pressed() -> void:
+func _on_main_menu_pressed() -> void:##zamień na player menu
 	resume_game()
 	GameManager.go_to_player_menu()
 

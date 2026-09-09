@@ -37,7 +37,7 @@ text = "Save"
 [node name="Main_Menu" type="Button" parent="Overlay/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Main Menu"
+text = "Player Menu"
 
 [node name="Exit" type="Button" parent="Overlay/CenterContainer/VBoxContainer"]
 layout_mode = 2
