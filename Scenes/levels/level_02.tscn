@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://4is2bv0gm0sg"]
+[gd_scene load_steps=15 format=3 uid="uid://4is2bv0gm0sg"]
 
 [ext_resource type="PackedScene" uid="uid://bk1vaou5qbn8j" path="res://Scenes/UI/pause_menu.tscn" id="1_lpkwo"]
 [ext_resource type="Texture2D" uid="uid://cv7kepetvmtt6" path="res://Asses/Tilemaps/Fantasy Swamp Forest/Free/Terrain_and_Props.png" id="1_rg40u"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://drdt7hbyy3htb" path="res://Scenes/Enemy scenes/skeleton.tscn" id="3_20v8k"]
 [ext_resource type="PackedScene" uid="uid://hj6i4wibnit3" path="res://Scenes/level_exit.tscn" id="4_ixpbg"]
 [ext_resource type="PackedScene" uid="uid://7uqetj8nky73" path="res://Scenes/Enemy scenes/archer.tscn" id="6_ntlbr"]
+[ext_resource type="PackedScene" uid="uid://g6wodbotbhf7" path="res://Scenes/Enemy scenes/enemy_arrow.tscn" id="7_jdwsy"]
 [ext_resource type="PackedScene" uid="uid://bq3p56ifu68ko" path="res://Scenes/damage_powerup.tscn" id="7_w07bi"]
 [ext_resource type="PackedScene" uid="uid://bd3xvrj20gfxx" path="res://Scenes/platform.tscn" id="8_b7lyo"]
 [ext_resource type="PackedScene" uid="uid://di0a11e07jr6a" path="res://Scenes/UI/wepon_pickup.tscn" id="9_b7lyo"]
@@ -479,6 +480,7 @@ next_level_path = "uid://ba7khell4ry3n"
 [node name="Archer" parent="." instance=ExtResource("6_ntlbr")]
 position = Vector2(1923, -89)
 save_id = "archer_1"
+arrow_scene = ExtResource("7_jdwsy")
 
 [node name="Skeleton2" parent="." instance=ExtResource("3_20v8k")]
 position = Vector2(3034, -153)
@@ -489,11 +491,15 @@ position = Vector2(1068, -280)
 save_id = "dmg_pwr1"
 
 [node name="Platform" parent="." instance=ExtResource("8_b7lyo")]
-position = Vector2(1372, -126)
+position = Vector2(1283, -151)
+scale = Vector2(2, 1)
+
+[node name="Platform4" parent="." instance=ExtResource("8_b7lyo")]
+position = Vector2(1402, -101)
 scale = Vector2(2, 1)
 
 [node name="Platform2" parent="." instance=ExtResource("8_b7lyo")]
-position = Vector2(1201, -181)
+position = Vector2(1164, -195)
 scale = Vector2(1.8, 1)
 
 [node name="Platform3" parent="." instance=ExtResource("8_b7lyo")]
@@ -504,5 +510,5 @@ position = Vector2(-361, -11)
 weapon = ExtResource("10_b77kj")
 
 [node name="ImpKamikaze" parent="." instance=ExtResource("11_b77kj")]
-position = Vector2(1198, -59)
+position = Vector2(1318, -63)
 save_id = "imp1"

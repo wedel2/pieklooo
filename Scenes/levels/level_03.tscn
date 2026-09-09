@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ba7khell4ry3n"]
+[gd_scene load_steps=15 format=3 uid="uid://ba7khell4ry3n"]
 
 [ext_resource type="PackedScene" uid="uid://bk1vaou5qbn8j" path="res://Scenes/UI/pause_menu.tscn" id="1_5s7q1"]
 [ext_resource type="Texture2D" uid="uid://cv7kepetvmtt6" path="res://Asses/Tilemaps/Fantasy Swamp Forest/Free/Terrain_and_Props.png" id="2_hlq6o"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bd3xvrj20gfxx" path="res://Scenes/platform.tscn" id="5_d1ud4"]
 [ext_resource type="PackedScene" uid="uid://7uqetj8nky73" path="res://Scenes/Enemy scenes/archer.tscn" id="6_yja2i"]
 [ext_resource type="PackedScene" uid="uid://tdvq1khuywl8" path="res://Scenes/coin.tscn" id="7_ajnfg"]
+[ext_resource type="PackedScene" uid="uid://g6wodbotbhf7" path="res://Scenes/Enemy scenes/enemy_arrow.tscn" id="7_d1ud4"]
 [ext_resource type="PackedScene" uid="uid://bq3p56ifu68ko" path="res://Scenes/damage_powerup.tscn" id="8_b3hen"]
 [ext_resource type="PackedScene" uid="uid://hj6i4wibnit3" path="res://Scenes/level_exit.tscn" id="9_hlq6o"]
 [ext_resource type="PackedScene" uid="uid://di0a11e07jr6a" path="res://Scenes/UI/wepon_pickup.tscn" id="10_5lnqc"]
@@ -480,6 +481,7 @@ scale = Vector2(1.5, 1)
 [node name="Archer" parent="." instance=ExtResource("6_yja2i")]
 position = Vector2(1415, -180)
 save_id = "archer1"
+arrow_scene = ExtResource("7_d1ud4")
 
 [node name="Coin" parent="." instance=ExtResource("7_ajnfg")]
 position = Vector2(1476, -180)
