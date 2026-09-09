@@ -13,7 +13,7 @@ bg_color = Color(0.823529, 0.105882, 0.121569, 1)
 atlas = ExtResource("2_qc5w2")
 region = Rect2(105, 0, 21, 0)
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="HP_Bar" type="CanvasLayer"]
 script = ExtResource("1_mr8ef")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

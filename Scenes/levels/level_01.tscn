@@ -1,10 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bq32iid8t10jj"]
+[gd_scene load_steps=19 format=3 uid="uid://bq32iid8t10jj"]
 
 [ext_resource type="PackedScene" uid="uid://vqa76f2u4rjs" path="res://Scenes/player.tscn" id="1_4k684"]
 [ext_resource type="Texture2D" uid="uid://cv7kepetvmtt6" path="res://Asses/Tilemaps/Fantasy Swamp Forest/Free/Terrain_and_Props.png" id="2_iex00"]
 [ext_resource type="PackedScene" uid="uid://drdt7hbyy3htb" path="res://Scenes/Enemy scenes/skeleton.tscn" id="3_alkix"]
 [ext_resource type="PackedScene" uid="uid://cj81bxpwij6jp" path="res://Scenes/UI/HUD.tscn" id="4_jqcbt"]
-[ext_resource type="Script" uid="uid://bddugfw3gkgu3" path="res://Scripts/GI/killzone.gd" id="5_oxqq7"]
+[ext_resource type="PackedScene" uid="uid://cmdq6tm131fyk" path="res://Scenes/killzone.tscn" id="5_8kokq"]
 [ext_resource type="PackedScene" uid="uid://bd3xvrj20gfxx" path="res://Scenes/platform.tscn" id="6_gbvua"]
 [ext_resource type="PackedScene" uid="uid://tdvq1khuywl8" path="res://Scenes/coin.tscn" id="7_m0r78"]
 [ext_resource type="PackedScene" uid="uid://bk1vaou5qbn8j" path="res://Scenes/UI/pause_menu.tscn" id="8_iex00"]
@@ -448,10 +448,9 @@ texture = ExtResource("2_iex00")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_feb5d")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3dryh"]
-distance = -145.0
-
 [node name="level_01" type="Node2D"]
+
+[node name="HP_Bar" parent="." instance=ExtResource("4_jqcbt")]
 
 [node name="Player" parent="." instance=ExtResource("1_4k684")]
 z_index = 9
@@ -464,6 +463,8 @@ zoom = Vector2(1.1, 1.1)
 limit_bottom = 600
 
 [node name="TileMap" type="TileMap" parent="."]
+light_mask = 512
+visibility_layer = 512
 z_index = 10
 scale = Vector2(1.00043, 1.00151)
 tile_set = SubResource("TileSet_fc0e3")
@@ -475,17 +476,7 @@ z_index = 5
 position = Vector2(727, -4)
 save_id = "skeleton_1"
 
-[node name="CanvasLayer" parent="." instance=ExtResource("4_jqcbt")]
-
-[node name="killzone" type="Area2D" parent="."]
-collision_mask = 3
-script = ExtResource("5_oxqq7")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-shape = SubResource("WorldBoundaryShape2D_3dryh")
-
-[node name="Timer" type="Timer" parent="killzone"]
-wait_time = 0.4
+[node name="killzone" parent="." instance=ExtResource("5_8kokq")]
 
 [node name="Platform" parent="." instance=ExtResource("6_gbvua")]
 z_index = 5
@@ -601,7 +592,3 @@ position = Vector2(-60, -13)
 [node name="DamagePowerup" parent="." instance=ExtResource("16_8kokq")]
 position = Vector2(-858, -50)
 save_id = "dmg_pwr1"
-
-[connection signal="hp_changed" from="Player" to="CanvasLayer" method="_on_player_hp_changed"]
-[connection signal="body_entered" from="killzone" to="killzone" method="_on_body_entered"]
-[connection signal="timeout" from="killzone/Timer" to="killzone" method="_on_timer_timeout"]
