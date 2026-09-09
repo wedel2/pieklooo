@@ -549,7 +549,7 @@ position = Vector2(2825, -451)
 [node name="LevelExit" parent="." instance=ExtResource("12_gbvua")]
 position = Vector2(910, -470)
 scale = Vector2(2.5, 2.5)
-next_level_path = "uid://bq32iid8t10jj"
+next_level_path = "uid://4is2bv0gm0sg"
 
 [node name="Coin5" parent="." instance=ExtResource("7_m0r78")]
 position = Vector2(-313, -22)
