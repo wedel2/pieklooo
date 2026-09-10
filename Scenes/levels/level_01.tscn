@@ -588,6 +588,7 @@ arrow_scene = ExtResource("14_j4i7h")
 
 [node name="ImpKamikaze" parent="." instance=ExtResource("15_w2125")]
 position = Vector2(-60, -13)
+save_id = "imp1"
 
 [node name="DamagePowerup" parent="." instance=ExtResource("16_8kokq")]
 position = Vector2(-858, -50)
